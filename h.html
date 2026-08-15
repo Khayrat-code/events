@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#421D36">
+<title>أجواء | لتنسيق الحفلات والمناسبات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Changa:wght@500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ الأساس ونظام الألوان المريح ============ */
+:root{
+  --mist:#FAF6F9; --lav:#F1E3EE; --lav2:#E7CBE2;
+  --brand:#8E3A62; --brand-d:#7A2F52;
+  --mid:#C489B1; --mid-d:#A96795;
+  --card-d:#5C315C; --ink:#421D36; --deep:#461D3A;
+  --paper:#FFFDFE; --txt-on-d:#F6E7F3;
+  --headH:64px; --r:22px;
+  --sh:0 18px 50px -18px rgba(70,29,58,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-padding-top:calc(var(--headH) + 12px)}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+html,body{overflow-x:clip}
+body{
+  font-family:'Almarai',system-ui,sans-serif;
+  background:var(--mist); color:var(--ink);
+  line-height:1.7; font-size:16px;
+}
+h1,h2,h3,.display{font-family:'Changa',sans-serif; line-height:1.25}
+img{max-width:100%}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit; cursor:pointer; border:0; background:none; color:inherit}
+::selection{background:var(--mid); color:#fff}
+
+/* ============ شريط تقدم التمرير ============ */
+#progress{position:fixed; inset-inline:0; top:0; height:3px; z-index:90;
+  background:linear-gradient(90deg,var(--mid),var(--brand));
+  transform-origin:right; transform:scaleX(0)}
+
+/* ============ بتلات عائمة ============ */
+#petals{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:3}
+.petal{position:absolute; top:-6vh; border-radius:60% 40% 55% 45%/50% 60% 40% 50%;
+  background:radial-gradient(circle at 30% 30%, #F7D9EC, #E3A8CD 70%, #C489B1);
+  opacity:.75; filter:blur(.2px);
+  animation:fall var(--t) linear infinite; animation-delay:var(--dl)}
+@keyframes fall{ to{ transform:translate3d(var(--sw),112vh,0) rotate(560deg); opacity:.15 } }
+
+/* ============ الهيدر ============ */
+header{position:fixed; top:0; inset-inline:0; z-index:40; height:var(--headH);
+  display:flex; align-items:center; justify-content:space-between;
+  padding-inline:clamp(14px,4vw,40px); transition:.35s;
+}
+header.scrolled{background:rgba(250,246,249,.82); backdrop-filter:blur(12px);
+  box-shadow:0 6px 24px -12px rgba(70,29,58,.25)}
+.logo{display:flex; align-items:center; gap:10px; font-family:'Changa'; font-weight:800; font-size:1.25rem; color:var(--ink)}
+.logo .dot{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:1.1rem;
+  background:linear-gradient(135deg,var(--brand),var(--mid)); box-shadow:0 8px 18px -8px var(--brand)}
+nav.desk{display:none; gap:26px; font-weight:700; font-size:.95rem}
+nav.desk a{position:relative; padding:6px 2px; opacity:.85}
+nav.desk a::after{content:''; position:absolute; inset-inline:0; bottom:0; height:2px; border-radius:2px;
+  background:var(--brand); transform:scaleX(0); transition:.3s; transform-origin:right}
+nav.desk a:hover::after{transform:scaleX(1)}
+.cta-sm{background:var(--brand); color:#fff; padding:9px 20px; border-radius:999px; font-weight:800; font-size:.85rem;
+  box-shadow:0 10px 22px -10px var(--brand); transition:.3s}
+.cta-sm:hover{transform:translateY(-2px)}
+#menuBtn{display:grid; place-items:center; width:42px;height:42px;border-radius:12px; background:var(--lav); color:var(--ink)}
+#mobileNav{position:fixed; top:var(--headH); inset-inline:0; z-index:39; background:var(--paper);
+  display:grid; gap:4px; padding:14px 20px 20px; box-shadow:var(--sh);
+  transform:translateY(-110%); transition:.4s cubic-bezier(.2,.8,.2,1)}
+#mobileNav.open{transform:none}
+#mobileNav a{padding:12px 10px; border-radius:12px; font-weight:700}
+#mobileNav a:active{background:var(--lav)}
+@media(min-width:900px){ nav.desk{display:flex} #menuBtn,#mobileNav{display:none} }
+
+/* ============ الهيرو ============ */
+.hero{min-height:100vh; min-height:100svh; position:relative; display:flex; align-items:center;
+  padding:calc(var(--headH) + 30px) clamp(18px,5vw,60px) 70px;
+  background:
+    radial-gradient(60% 45% at 85% 12%, rgba(196,137,177,.28), transparent 60%),
+    radial-gradient(50% 40% at 10% 85%, rgba(236,208,236,.5), transparent 65%),
+    linear-gradient(180deg,var(--mist),var(--lav));
+  overflow:hidden;
+}
+.hero .blob{position:absolute; border-radius:50%; filter:blur(50px); opacity:.5; animation:floaty 9s ease-in-out infinite}
+.blob.b1{width:340px;height:340px; background:var(--lav2); top:-90px; inset-inline-end:-80px}
+.blob.b2{width:260px;height:260px; background:var(--mid); bottom:-70px; inset-inline-start:-60px; animation-delay:-4s; opacity:.35}
+@keyframes floaty{ 50%{ transform:translateY(-24px) scale(1.06)} }
+.hero-grid{position:relative; z-index:2; width:100%; max-width:1150px; margin-inline:auto;
+  display:grid; gap:44px; align-items:center}
+@media(min-width:900px){ .hero-grid{grid-template-columns:1.1fr .9fr} }
+.badge{display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--lav2);
+  padding:7px 16px; border-radius:999px; font-size:.8rem; font-weight:800; color:var(--brand);
+  box-shadow:0 8px 20px -12px rgba(142,58,98,.4)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--brand); animation:pulse 2s infinite}
+@keyframes pulse{ 50%{transform:scale(1.7); opacity:.4} }
+.hero h1{font-size:clamp(2rem,7.2vw,4rem); font-weight:800; margin:18px 0 14px; color:var(--deep)}
+.hero h1 .w{display:inline-block; overflow:hidden; vertical-align:bottom}
+.hero h1 .wi{display:inline-block; transform:translateY(115%); transition:transform .9s cubic-bezier(.2,.8,.2,1); transition-delay:var(--d)}
+.hero.in h1 .wi{transform:none}
+.hero h1 em{font-style:normal; color:var(--brand); position:relative}
+.hero p.lead{max-width:52ch; color:#6d4a63; font-size:clamp(.95rem,2.6vw,1.08rem); opacity:0; transform:translateY(16px); transition:.8s .5s}
+.hero.in p.lead{opacity:1; transform:none}
+.hero-cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px; opacity:0; transform:translateY(16px); transition:.8s .7s}
+.hero.in .hero-cta{opacity:1; transform:none}
+.btn{padding:14px 30px; border-radius:999px; font-weight:800; font-size:.95rem; transition:.3s; display:inline-flex; align-items:center; gap:8px}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--mid-d)); color:#fff; box-shadow:0 16px 32px -14px var(--brand)}
+.btn.primary:hover{transform:translateY(-3px)}
+.btn.ghost{border:2px solid var(--lav2); color:var(--ink); background:#fff}
+.btn.ghost:hover{border-color:var(--mid)}
+.stats{display:flex; gap:clamp(18px,5vw,44px); margin-top:34px; opacity:0; transition:.8s .9s}
+.hero.in .stats{opacity:1}
+.stats b{font-family:'Changa'; font-size:clamp(1.4rem,4.5vw,2rem); color:var(--brand); display:block}
+.stats span{font-size:.8rem; color:#7c5a72; font-weight:700}
+/* كأس الاحتفال ثلاثي الأبعاد */
+.glass-wrap{perspective:900px; display:grid; place-items:center}
+#glassCard{width:min(78vw,340px); aspect-ratio:4/5; border-radius:30px; position:relative;
+  background:linear-gradient(160deg,#5C315C, #421D36 60%, #7A2F52);
+  box-shadow:0 40px 80px -30px rgba(66,29,54,.55), inset 0 1px 0 rgba(255,255,255,.25);
+  display:grid; place-items:center; transform-style:preserve-3d;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition:transform .15s ease-out}
+#glassCard .cup{font-size:clamp(5rem,20vw,8rem); filter:drop-shadow(0 14px 30px rgba(236,208,236,.45)); transform:translateZ(60px)}
+#glassCard .cap{position:absolute; bottom:26px; color:var(--txt-on-d); font-weight:800; letter-spacing:.5px; transform:translateZ(40px)}
+#glassCard::after{content:''; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);
+  transform:translateX(-130%); animation:shine 5s ease-in-out infinite}
+@keyframes shine{ 18%{transform:translateX(130)} 100%{transform:translateX(130%)} }
+.spark{position:absolute; color:#F7D9EC; animation:tw 2.6s ease-in-out infinite; transform:translateZ(70px)}
+@keyframes tw{ 50%{opacity:.2; transform:scale(.6) translateZ(70px)} }
+.scroll-hint{position:absolute; bottom:18px; inset-inline-start:50%; translate:50% 0; z-index:2;
+  color:var(--brand); font-size:1.4rem; animation:bnc 1.8s infinite}
+@keyframes bnc{ 50%{transform:translateY(8px)} }
+
+/* ============ الشريط المتحرك ============ */
+.marquee{background:var(--deep); color:var(--lav); overflow:hidden; padding:14px 0; position:relative; z-index:2}
+.mq-track{display:flex; gap:38px; width:max-content; animation:mq 26s linear infinite; font-family:'Changa'; font-weight:600; font-size:1rem; white-space:nowrap}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-track i{color:var(--mid); font-style:normal}
+@keyframes mq{ to{transform:translateX(50%)} }
+
+/* ============ العناوين العامة ============ */
+section{position:relative; padding:clamp(64px,10vw,110px) clamp(18px,5vw,60px)}
+.wrap{max-width:1150px; margin-inline:auto}
+.overline{display:inline-block; color:var(--brand); font-weight:800; font-size:.8rem; letter-spacing:1px;
+  background:var(--lav); padding:6px 16px; border-radius:999px; margin-bottom:12px}
+h2.title{font-size:clamp(1.6rem,5vw,2.6rem); font-weight:800; color:var(--deep)}
+.sub{color:#7c5a72; max-width:60ch; margin-top:8px}
+/* كشف عام */
+.reveal{opacity:0; transform:translateY(34px); transition:opacity .8s var(--d,0s), transform .8s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
+.reveal.in{opacity:1; transform:none}
+
+/* ============ عدّادات ============ */
+.about-grid{display:grid; gap:30px; align-items:center}
+@media(min-width:900px){ .about-grid{grid-template-columns:1fr 1fr} }
+.counters{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.counter{background:var(--paper); border:1px solid var(--lav2); border-radius:var(--r); padding:22px 10px; text-align:center; box-shadow:var(--sh)}
+.counter b{font-family:'Changa'; font-size:clamp(1.5rem,5vw,2.3rem); color:var(--brand)}
+.counter span{display:block; font-size:.75rem; font-weight:800; color:#7c5a72; margin-top:2px}
+
+/* ============ البطاقات المتراكمة (الخدمات) ============ */
+.stack{display:grid; gap:22px; margin-top:40px}
+.scard{position:sticky; top:calc(var(--headH) + 14px + var(--i)*10px);
+  border-radius:28px; padding:clamp(22px,5vw,48px); min-height:min(66vh,540px);
+  display:grid; gap:26px; align-content:center;
+  box-shadow:0 -12px 40px -18px rgba(66,29,54,.35);
+  transform:rotate(var(--tilt,0deg));
+  background:linear-gradient(150deg,var(--g1),var(--g2)); color:var(--tc)}
+@media(min-width:900px){ .scard{grid-template-columns:1.2fr .8fr; align-items:center} }
+.scard .num{font-family:'Changa'; font-size:clamp(2.4rem,7vw,4rem); opacity:.28; font-weight:800; line-height:1}
+.scard h3{font-size:clamp(1.4rem,4.5vw,2.2rem); font-weight:800; margin:6px 0 8px}
+.scard p{max-width:52ch; opacity:.92}
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+.tags span{padding:7px 14px; border-radius:999px; font-size:.75rem; font-weight:800;
+  background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.35)}
+.scard.light .tags span{background:rgba(255,255,255,.5); border-color:#fff; color:var(--ink)}
+.scard .art{display:grid; place-items:center}
+.scard .art b{font-size:clamp(4.5rem,16vw,8.5rem); filter:drop-shadow(0 18px 30px rgba(0,0,0,.25)); display:block;
+  animation:floaty 6s ease-in-out infinite}
+.c1{--g1:#F1E3EE;--g2:#E7CBE2;--tc:#421D36;--tilt:-.4deg}
+.c2{--g1:#E7CBE2;--g2:#D9AFCB;--tc:#421D36;--tilt:.5deg}
+.c3{--g1:#D9AFCB;--g2:#C489B1;--tc:#421D36;--tilt:-.5deg}
+.c4{--g1:#C489B1;--g2:#A96795;--tc:#FBF3F9;--tilt:.4deg}
+.c5{--g1:#A96795;--g2:#8E3A62;--tc:#FBF3F9;--tilt:-.4deg}
+.c6{--g1:#8E3A62;--g2:#7A2F52;--tc:#FBF3F9;--tilt:.5deg}
+.c7{--g1:#5C315C;--g2:#4A2547;--tc:#F6E7F3;--tilt:-.5deg}
+.c8{--g1:#421D36;--g2:#5C315C;--tc:#F6E7F3;--tilt:.4deg}
+.scard.c1,.scard.c2,.scard.c3{ }
+.scard:not(.light){ }
+.scard.c1,.scard.c2,.scard.c3{--tc:#421D36}
+
+/* ============ المعرض: مسرح الذكريات ============ */
+#gallery{background:
+  radial-gradient(50% 40% at 80% 10%, rgba(196,137,177,.22), transparent 60%),
+  radial-gradient(40% 35% at 12% 90%, rgba(142,58,98,.3), transparent 60%),
+  linear-gradient(165deg,#3A1830, #421D36 45%, #5C315C);
+  color:var(--txt-on-d); overflow:hidden}
+#gallery .overline{background:rgba(255,255,255,.1); color:var(--mid)}
+#gallery .sub{color:#D9B8D2}
+.g-head{display:flex; flex-wrap:wrap; gap:18px; align-items:end; justify-content:space-between}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+.chip{padding:9px 18px; border-radius:999px; font-size:.8rem; font-weight:800;
+  border:1px solid rgba(255,255,255,.25); color:var(--txt-on-d); transition:.3s}
+.chip.on{background:var(--mid); border-color:var(--mid); color:var(--deep); transform:scale(1.05)}
+#stageWrap{perspective:1200px; margin-top:34px}
+#stage{transform-style:preserve-3d; transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition:transform .2s ease-out;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,3vw,26px); padding:10px 4px 30px}
+@media(min-width:760px){ #stage{grid-template-columns:repeat(4,1fr)} }
+@media(min-width:760px){
+  .polaroid:nth-child(2){transform:rotate(var(--r)) translateY(26px)}
+  .polaroid:nth-child(3){transform:rotate(var(--r)) translateY(-14px)}
+  .polaroid:nth-child(5){transform:rotate(var(--r)) translateY(20px)}
+  .polaroid:nth-child(7){transform:rotate(var(--r)) translateY(-18px)}
+  .polaroid:nth-child(8){transform:rotate(var(--r)) translateY(14px)}
+}
+.polaroid{--r:0deg; background:var(--paper); padding:10px 10px 14px; border-radius:14px;
+  box-shadow:0 24px 50px -20px rgba(0,0,0,.55); cursor:pointer; position:relative;
+  transform:rotate(var(--r)); transition:transform .9s cubic-bezier(.2,.8,.2,1) var(--d), opacity .7s var(--d), box-shadow .3s;
+  opacity:0}
+#gallery.in .polaroid{opacity:1}
+.polaroid:hover{box-shadow:0 30px 60px -18px rgba(0,0,0,.65); z-index:2}
+.polaroid .ph{aspect-ratio:4/4.6; border-radius:8px; overflow:hidden; position:relative;
+  background:linear-gradient(150deg,var(--g1),var(--g2)); display:grid; place-items:center}
+.polaroid .ph b{font-size:clamp(3rem,9vw,4.6rem); filter:drop-shadow(0 10px 20px rgba(0,0,0,.3))}
+.polaroid .ph::after{content:''; position:absolute; inset:0;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.35) 50%,transparent 58%);
+  transform:translateX(-130%); animation:shine 6s ease-in-out infinite; animation-delay:var(--sd,0s)}
+.polaroid figcaption{display:flex; justify-content:space-between; align-items:center; gap:8px;
+  padding-top:10px; color:var(--ink); font-weight:800; font-size:.78rem}
+.polaroid figcaption i{font-style:normal; font-size:.68rem; color:var(--brand); background:var(--lav); padding:3px 10px; border-radius:999px}
+/* تناثر الدخول */
+.polaroid{transform:translate3d(var(--fx,0),var(--fy,0),0) rotate(var(--fr,0deg)) scale(1.2)}
+#gallery.in .polaroid{transform:rotate(var(--r))}
+.polaroid:nth-child(1){--fx:-46vw;--fy:-16vh;--fr:-32deg;--d:.05s;--r:-4deg;--sd:.4s}
+.polaroid:nth-child(2){--fx:40vw;--fy:-30vh;--fr:26deg;--d:.12s;--r:3deg;--sd:1.4s}
+.polaroid:nth-child(3){--fx:-30vw;--fy:34vh;--fr:-20deg;--d:.2s;--r:-2deg;--sd:2.2s}
+.polaroid:nth-child(4){--fx:50vw;--fy:20vh;--fr:34deg;--d:.28s;--r:5deg;--sd:.9s}
+.polaroid:nth-child(5){--fx:-52vw;--fy:8vh;--fr:24deg;--d:.36s;--r:4deg;--sd:1.8s}
+.polaroid:nth-child(6){--fx:34vw;--fy:40vh;--fr:-28deg;--d:.44s;--r:-5deg;--sd:2.8s}
+.polaroid:nth-child(7){--fx:-38vw;--fy:-36vh;--fr:18deg;--d:.52s;--r:-3deg;--sd:.2s}
+.polaroid:nth-child(8){--fx:46vw;--fy:-8vh;--fr:-24deg;--d:.6s;--r:4deg;--sd:1.1s}
+.polaroid.hide{opacity:0!important; transform:scale(.7)!important; pointer-events:none; position:absolute; visibility:hidden}
+.tour-btn{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.3); padding:11px 22px; border-radius:999px; font-weight:800; font-size:.85rem; transition:.3s}
+.tour-btn:hover{background:var(--mid); color:var(--deep)}
+
+/* ============ Lightbox سينمائي ============ */
+.lightbox{position:fixed; inset:0; z-index:100; display:grid; place-items:center;
+  background:rgba(30,12,26,.86); backdrop-filter:blur(10px);
+  opacity:0; pointer-events:none; transition:.35s}
+.lightbox.open{opacity:1; pointer-events:auto}
+.lb-card{width:min(88vw,430px); background:var(--paper); border-radius:18px; padding:12px 12px 18px;
+  transform:scale(.9) rotateX(10deg); transition:.4s cubic-bezier(.2,.8,.2,1); box-shadow:0 50px 100px -30px #000}
+.lightbox.open .lb-card{transform:none}
+.lb-photo{aspect-ratio:4/4.4; border-radius:10px; overflow:hidden; position:relative;
+  background:linear-gradient(150deg,var(--g1,#C489B1),var(--g2,#5C315C)); display:grid; place-items:center}
+.lb-photo .kb{font-size:6rem; animation:kb 9s ease-in-out infinite alternate; filter:drop-shadow(0 16px 30px rgba(0,0,0,.35))}
+@keyframes kb{ to{transform:scale(1.18) translate(3%,-3%)} }
+.lb-cap{display:flex; justify-content:space-between; align-items:center; padding:14px 6px 0; color:var(--ink); font-weight:800}
+.lb-cap i{font-style:normal; color:var(--brand); background:var(--lav); padding:4px 12px; border-radius:999px; font-size:.72rem}
+.lb-ctl{display:flex; justify-content:center; gap:10px; margin-top:14px}
+.lb-ctl button{background:var(--lav); color:var(--ink); padding:9px 20px; border-radius:999px; font-weight:800; font-size:.8rem; transition:.25s}
+.lb-ctl button:hover{background:var(--mid)}
+#lbClose{position:absolute; top:18px; inset-inline-start:18px; width:44px;height:44px; border-radius:50%;
+  background:rgba(255,255,255,.15); color:#fff; font-size:1.2rem}
+
+/* ============ الخطوات ============ */
+.steps{margin-top:44px; position:relative; display:grid; gap:34px}
+.steps::before{content:''; position:absolute; top:8px; bottom:8px; inset-inline-start:23px; width:3px; border-radius:3px;
+  background:linear-gradient(var(--mid),var(--brand)); transform:scaleY(0); transform-origin:top; transition:transform 1.4s ease}
+.steps.in::before{transform:scaleY(1)}
+.step{display:flex; gap:20px; align-items:flex-start}
+.step .n{flex:0 0 48px; height:48px; border-radius:50%; display:grid; place-items:center;
+  background:var(--paper); border:3px solid var(--brand); color:var(--brand);
+  font-family:'Changa'; font-weight:800; font-size:1.1rem; box-shadow:0 0 0 6px var(--lav)}
+.step h3{font-size:1.15rem; color:var(--deep)}
+.step p{color:#7c5a72; font-size:.92rem; max-width:56ch}
+
+/* ============ الآراء ============ */
+#voices{background:linear-gradient(180deg,var(--lav),var(--mist))}
+.v-scroll{display:flex; gap:18px; overflow-x:auto; padding:30px 6px 14px; scroll-snap-type:x mandatory; scrollbar-width:none}
+.v-scroll::-webkit-scrollbar{display:none}
+.vcard{flex:0 0 min(82vw,340px); scroll-snap-align:center; background:var(--paper); border-radius:var(--r);
+  padding:26px; box-shadow:var(--sh); border:1px solid var(--lav2); position:relative}
+.vcard::before{content:'❝'; position:absolute; top:14px; inset-inline-end:20px; font-size:2.4rem; color:var(--mid); opacity:.5}
+.vcard p{font-size:.92rem; color:#5d3d55}
+.vcard b{display:block; margin-top:14px; color:var(--brand); font-size:.85rem}
+.vcard .stars{color:#E5A93F; letter-spacing:2px; font-size:.8rem; margin-bottom:10px}
+
+/* ============ الحجز ============ */
+#book .card{background:linear-gradient(150deg,var(--card-d),var(--deep)); border-radius:30px; color:var(--txt-on-d);
+  padding:clamp(28px,6vw,60px); box-shadow:0 40px 80px -30px rgba(66,29,54,.5); position:relative; overflow:hidden}
+#book .card::after{content:''; position:absolute; bottom:-30px; inset-inline-end:-10px; transform:rotate(-15deg)}
+#book form{display:grid; gap:14px; margin-top:26px; grid-template-columns:1fr}
+@media(min-width:800px){ #book form{grid-template-columns:1fr 1fr} #book .btn{grid-column:1/-1} }
+#book input,#book select{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28); border-radius:14px;
+  padding:14px 16px; color:#fff; font-family:inherit; font-size:.92rem; outline:none; transition:.3s}
+#book input::placeholder{color:#D9B8D2}
+#book select option{color:var(--ink)}
+#book input:focus,#book select:focus{border-color:var(--mid); background:rgba(255,255,255,.16)}
+#toast{position:fixed; bottom:24px; inset-inline-start:50%; translate:50% 0; z-index:120;
+  background:var(--brand); color:#fff; padding:14px 28px; border-radius:999px; font-weight:800;
+  box-shadow:0 20px 40px -14px var(--brand); opacity:0; transform:translateY(20px); transition:.4s; pointer-events:none}
+#toast.show{opacity:1; transform:none}
+
+/* ============ الفوتر ============ */
+footer{background:var(--deep); color:var(--lav); padding:50px clamp(18px,5vw,60px) 30px}
+.f-grid{max-width:1150px; margin-inline:auto; display:grid; gap:30px}
+@media(min-width:800px){ .f-grid{grid-template-columns:1.3fr 1fr 1fr} }
+footer h4{font-family:'Changa'; font-size:1.1rem; margin-bottom:12px; color:#fff}
+footer a{opacity:.85; display:block; padding:4px 0; font-size:.9rem}
+footer a:hover{opacity:1; color:var(--mid)}
+.f-bottom{max-width:1150px; margin:34px auto 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.15);
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; font-size:.8rem; opacity:.8}
+.wa{display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff!important; opacity:1!important;
+  padding:10px 22px; border-radius:999px; font-weight:800}
+
+/* ============ تقليل الحركة ============ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  .reveal,.polaroid,.hero p.lead,.hero .hero-cta,.hero .stats{opacity:1!important; transform:none!important}
+  .hero h1 .wi{transform:none!important}
+  #stage{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="petals" aria-hidden="true"></div>
+
+<header id="hdr">
+  <a class="logo" href="#top">
+    <span style="direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;line-height:0" aria-label="ToolCan">
+      <svg viewBox="0 0 600 200" width="140" height="46.67" role="img" aria-hidden="true">
+        <text x="50%" y="58%" text-anchor="middle" dominant-baseline="middle"
+          font-family="'Playfair Display','Bodoni 72','Didot',Georgia,serif"
+          font-size="78" font-weight="500" letter-spacing="2" fill="#421D36">TOOLCAN</text>
+        <path d="M 175 55 C 215 30, 260 22, 300 30 C 340 38, 375 50, 420 56" fill="none" stroke="#421D36" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M 420 56 L 432 50 L 426 60" fill="none" stroke="#421D36" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </a>
+  <nav class="desk">
+    <a href="#services">تخصصاتنا</a>
+    <a href="#gallery">المعرض</a>
+    <a href="#steps">طريقتنا</a>
+    <a href="#voices">آراء العملاء</a>
+  </nav>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a class="cta-sm" href="#book">احجز موعدك</a>
+    <button id="menuBtn" aria-label="القائمة">☰</button>
+  </div>
+</header>
+<nav id="mobileNav">
+  <a href="#services">تخصصاتنا</a>
+  <a href="#gallery">المعرض</a>
+  <a href="#steps">طريقتنا</a>
+  <a href="#voices">آراء العملاء</a>
+  <a href="#book">احجز موعدك</a>
+</nav>
+
+<!-- ======= الهيرو ======= -->
+<section class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="hero-grid">
+    <div>
+      <span class="badge"><i></i> مؤسسة أجواء لتنسيق الحفلات</span>
+      <h1>
+        <span class="w"><span class="wi" style="--d:.1s">نحوّلُ</span></span>
+        <span class="w"><span class="wi" style="--d:.2s">مناسبتكَ</span></span>
+        <span class="w"><span class="wi" style="--d:.3s">إلى</span></span>
+        <span class="w"><span class="wi" style="--d:.4s"><em>حكايةٍ</em></span></span>
+        <span class="w"><span class="wi" style="--d:.5s">تُروى</span></span>
+      </h1>
+      <p class="lead">من أول وردةٍ في الممرّ إلى آخر إضاءةٍ في القاعة: تنسيق ورد، كوش، أعراس، تخرّج، أعياد ميلاد وولائم — بتفاصيل فنية تليق بذوقك.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#gallery">استعرض أعمالنا</a>
+        <a class="btn ghost" href="#book">تواصل معنا للحجز</a>
+      </div>
+      <div class="stats">
+        <div><b><span class="num" data-n="350">0</span>+</b><span>مناسبة منسّقة</span></div>
+        <div><b><span class="num" data-n="8">0</span></b><span>تخصصات تنسيق</span></div>
+        <div><b><span class="num" data-n="10">0</span></b><span>سنوات من الشغف</span></div>
+      </div>
+    </div>
+    <div class="glass-wrap">
+      <div id="glassCard">
+        <span class="spark" style="top:14%;inset-inline-start:16%">✦</span>
+        <span class="spark" style="top:24%;inset-inline-end:14%;animation-delay:.8s">✦</span>
+        <span class="spark" style="bottom:26%;inset-inline-start:20%;animation-delay:1.5s">✦</span>
+        <span class="cup">🥂</span>
+        <span class="cap">كل حفلةٍ تبدأ بكأسِ فرح</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">⌄</div>
+</section>
+
+<!-- ======= الشريط المتحرك ======= -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>تنسيق ورد</span><i>✦</i><span>حفل تخرج</span><i>✦</i><span>خطوبة</span><i>✦</i><span>عيد ميلاد</span><i>✦</i><span>كوش أفراح</span><i>✦</i><span>ولائم</span><i>✦</i><span>تنسيق داخلي كامل</span><i>✦</i><span>تنسيق خارجي كامل</span><i>✦</i>
+    <span>تنسيق ورد</span><i>✦</i><span>حفل تخرج</span><i>✦</i><span>خطوبة</span><i>✦</i><span>عيد ميلاد</span><i>✦</i><span>كوش أفراح</span><i>✦</i><span>ولائم</span><i>✦</i><span>تنسيق داخلي كامل</span><i>✦</i><span>تنسيق خارجي كامل</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ======= من نحن + عدّادات ======= -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="overline">لماذا أجواء؟</span>
+      <h2 class="title">نحن لا نزيّن المكان…<br>نحن نبني أجواءه</h2>
+      <p class="sub" style="margin-top:14px">فريقنا يرافقك من فكرة المناسبة حتى لحظة وداع آخر ضيف: تصميمٌ يخصّك وحدك، خاماتٌ فاخرة، وتنفيذٌ دقيق في الموعد.</p>
+    </div>
+    <div class="counters reveal" style="--d:.15s">
+      <div class="counter"><b><span class="num" data-n="350">0</span>+</b><span>حفل ناجح</span></div>
+      <div class="counter"><b><span class="num" data-n="120">0</span>+</b><span>كوشة مصمّمة</span></div>
+      <div class="counter"><b><span class="num" data-n="98">0</span>٪</b><span>رضا العملاء</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= البطاقات المتراكمة ======= -->
+<section id="services" style="padding-top:20px">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="overline">تخصصاتنا الثمانية</span>
+      <h2 class="title">مرّر لتشاهد الفصول تتراكب</h2>
+    </div>
+    <div class="stack">
+      <article class="scard c1 light" style="--i:0"><div><span class="num">01</span><h3>تنسيق ورد</h3><p>وردٌ يحكي مزاج المناسبة: ممرّات، جداريات، وبوكيهات تُقطَف ذوقًا قبل أن تُقطَف لونًا.</p><div class="tags"><span>ممرات وردية</span><span>جداريات زهور</span><span>بوكيهات</span></div></div><div class="art"><b>🌸</b></div></article>
+      <article class="scard c2 light" style="--i:1"><div><span class="num">02</span><h3>حفل تخرج</h3><p>فرحة النجاح تستحق إطارًا يليق بها: ركن تصوير، لوحات تهنئة، وإضاءة تحتفي بالمجتهد.</p><div class="tags"><span>ركن تصوير</span><span>لوحات تهنئة</span><span>إضاءة احتفالية</span></div></div><div class="art"><b>🎓</b></div></article>
+      <article class="scard c3 light" style="--i:2"><div><span class="num">03</span><h3>خطوبة</h3><p>بداية الحكاية أجملُ حين تُروى بمشهدٍ دافئ: كوشة خطوبة وضيافةٌ تُذكَر.</p><div class="tags"><span>كوشة خطوبة</span><span>طاولات ضيافة</span><span>إنارة دافئة</span></div></div><div class="art"><b>💍</b></div></article>
+      <article class="scard c4" style="--i:3"><div><span class="num">04</span><h3>عيد ميلاد</h3><p>عمرٌ جديد يُحتفَل على طريقتك: ثيم حسب الطلب، ركن حلويات، وأقواس بالونات.</p><div class="tags"><span>ثيم مخصص</span><span>ركن حلويات</span><span>بالونات وأقواس</span></div></div><div class="art"><b>🎂</b></div></article>
+      <article class="scard c5" style="--i:4"><div><span class="num">05</span><h3>كوش أفراح</h3><p>عرشُ الليلة كلّها: تصميمٌ حصري بخامات فاخرة يتناغم مع هندسة القاعة.</p><div class="tags"><span>تصميم حصري</span><span>خامات فاخرة</span><span>تناغم مع القاعة</span></div></div><div class="art"><b>👑</b></div></article>
+      <article class="scard c6" style="--i:5"><div><span class="num">06</span><h3>ولائم</h3><p>ضيافةٌ تُذكر: طاولات منسّقة، بوفيهات أنيقة، وأدوات تُشرّف أصحاب الدعوة.</p><div class="tags"><span>تنسيق طاولات</span><span>بوفيهات أنيقة</span><span>أدوات فاخرة</span></div></div><div class="art"><b>🍽️</b></div></article>
+      <article class="scard c7" style="--i:6"><div><span class="num">07</span><h3>تنسيق داخلي كامل</h3><p>القاعة تتحوّل كليًا: إضاءة معمارية، أسقف وستائر، ومسرحٌ وممرّات تستقبل الضيوف.</p><div class="tags"><span>إضاءة معمارية</span><span>أسقف وستائر</span><span>مسرح وممرات</span></div></div><div class="art"><b>🕯️</b></div></article>
+      <article class="scard c8" style="--i:7"><div><span class="num">08</span><h3>تنسيق خارجي كامل</h3><p>تحت السماء نرتّب الفرح: خيام ملكية، جلسات خارجية، وإنارةٌ معلّقة كالنجوم.</p><div class="tags"><span>خيام ملكية</span><span>جلسات خارجية</span><span>إنارة معلقة</span></div></div><div class="art"><b>⛺</b></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ======= المعرض ======= -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="g-head reveal">
+      <div>
+        <span class="overline">مسرح الذكريات</span>
+        <h2 class="title" style="color:#fff">صورٌ نثرناها… فجمعتها الأضواء</h2>
+        <p class="sub">المس البطاقة لتقليبها، وأمِل هاتفك لتشعر بأنها بين يديك.</p>
+      </div>
+      <button class="tour-btn" id="tourBtn">▶ جولة تلقائية في الأعمال</button>
+    </div>
+    <div class="chips reveal" style="--d:.1s">
+      <button class="chip on" data-f="all">الكل</button>
+      <button class="chip" data-f="ورد">ورد</button>
+      <button class="chip" data-f="تخرج">تخرج</button>
+      <button class="chip" data-f="خطوبة">خطوبة</button>
+      <button class="chip" data-f="ميلاد">ميلاد</button>
+      <button class="chip" data-f="كوش">كوش</button>
+      <button class="chip" data-f="ولائم">ولائم</button>
+      <button class="chip" data-f="داخلي">داخلي</button>
+      <button class="chip" data-f="خارجي">خارجي</button>
+    </div>
+
+    <div id="stageWrap">
+      <div id="stage">
+        <figure class="polaroid" data-cat="ورد"  data-title="جدار وردٍ متدرّج"        data-e="🌸" style="--g1:#E7CBE2;--g2:#C489B1"><div class="ph"><b>🌸</b></div><figcaption>جدار وردٍ متدرّج <i>تنسيق ورد</i></figcaption></figure>
+        <figure class="polaroid" data-cat="كوش"  data-title="كوشة عرسٍ بلون التوت"    data-e="👑" style="--g1:#8E3A62;--g2:#5C315C"><div class="ph"><b>👑</b></div><figcaption>كوشة عرسٍ بلون التوت <i>كوش</i></figcaption></figure>
+        <figure class="polaroid" data-cat="تخرج" data-title="ركن تهنئة التخرج"        data-e="🎓" style="--g1:#C489B1;--g2:#7A2F52"><div class="ph"><b>🎓</b></div><figcaption>ركن تهنئة التخرج <i>تخرج</i></figcaption></figure>
+        <figure class="polaroid" data-cat="ميلاد" data-title="ثيم ميلادٍ وردي"        data-e="🎂" style="--g1:#F1E3EE;--g2:#C489B1"><div class="ph"><b>🎂</b></div><figcaption>ثيم ميلادٍ وردي <i>ميلاد</i></figcaption></figure>
+        <figure class="polaroid" data-cat="خطوبة" data-title="طاولة خطوبةٍ دافئة"     data-e="💍" style="--g1:#A96795;--g2:#5C315C"><div class="ph"><b>💍</b></div><figcaption>طاولة خطوبةٍ دافئة <i>خطوبة</i></figcaption></figure>
+        <figure class="polaroid" data-cat="ولائم" data-title="طاولات وليمةٍ ملكية"    data-e="🍽️" style="--g1:#7A2F52;--g2:#421D36"><div class="ph"><b>🍽️</b></div><figcaption>طاولات وليمةٍ ملكية <i>ولائم</i></figcaption></figure>
+        <figure class="polaroid" data-cat="داخلي" data-title="قاعةٌ مضاءة بالثريات"   data-e="🕯️" style="--g1:#5C315C;--g2:#C489B1"><div class="ph"><b>🕯️</b></div><figcaption>قاعةٌ مضاءة بالثريات <i>داخلي كامل</i></figcaption></figure>
+        <figure class="polaroid" data-cat="خارجي" data-title="جلسةٌ تحت الإنارة"      data-e="" style="--g1:#421D36;--g2:#A96795"><div class="ph"><b>⛺</b></div><figcaption>جلسةٌ تحت الإنارة <i>خارجي كامل</i></figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Lightbox ======= -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button id="lbClose" aria-label="إغلاق">✕</button>
+  <div class="lb-card">
+    <div class="lb-photo" id="lbPhoto"><span class="kb" id="lbEmoji">🌸</span></div>
+    <div class="lb-cap"><span id="lbTitle">—</span><i id="lbCat">—</i></div>
+    <div class="lb-ctl">
+      <button id="lbPrev">السابق</button>
+      <button id="lbNext">التالي</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= الخطوات ======= -->
+<section id="steps">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="overline">طريقتنا</span>
+      <h2 class="title">أربع خطوات… وتقام الحفلة</h2>
+    </div>
+    <div class="steps" id="stepsLine">
+      <div class="step reveal"><span class="n">١</span><div><h3>نسمع حكايتك</h3><p>جلسة تعارف مجانية نفهم فيها ذوقك، عدد ضيوفك، وميزانيتك — بلا وعودٍ فضفاضة.</p></div></div>
+      <div class="step reveal" style="--d:.1s"><span class="n">٢</span><div><h3>نرسم المشهد</h3><p>مخطط ألوان وخامات وإضاءة واضح، مع تصور مبدئي ترى به حفلتك قبل أن تُقام.</p></div></div>
+      <div class="step reveal" style="--d:.2s"><span class="n">٣</span><div><h3>نجهّز وننسّق</h3><p>فريقنا يدخل القاعة قبلك بساعات: يُركّب، يرتّب، ويفحص كل تفصيلة على checklist.</p></div></div>
+      <div class="step reveal" style="--d:.3s"><span class="n">٤</span><div><h3>تستمتع أنت</h3><p>تحضر كضيف شرفٍ في مناسبتك، ونحن نتولى الكواليس حتى آخر ضيف.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= الآراء ======= -->
+<section id="voices">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="overline">قالوا عنا</span>
+      <h2 class="title">اسحب لتقرأ حكاياتهم</h2>
+    </div>
+    <div class="v-scroll">
+      <div class="vcard"><div class="stars">★★★★★</div><p>«دخلت القاعة قبل العرس بساعة ولم أصدّق أنها نفس القاعة! الكوشة والممرّ فاقا التصور.»</p><b>أم فيصل — عرس</b></div>
+      <div class="vcard"><div class="stars">★★★★★</div><p>«ركن التخرج لابنتي كان لوحة؛ كل ضيف صوّر عنده. تنظيمٌ والتزامٌ بالموعد حرفيًا.»</p><b>أبو سارة — حفل تخرج</b></div>
+      <div class="vcard"><div class="stars">★★★★★</div><p>«ثيم عيد الميلاد طابق شخصية ابني تمامًا، والحلويات مرتّبة كأنها معرض. شكرًا أجواء!»</p><b>نورة العتيبي — عيد ميلاد</b></div>
+      <div class="vcard"><div class="stars">★★★★★</div><p>«وليمة الخطوبة كانت فخمة وذوقًا عاليًا؛ الطاولات والورد والإضاءة تناغمٌ غريب.»</p><b>عائلة الحربي — خطوبة</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= الحجز ======= -->
+<section id="book">
+  <div class="wrap">
+    <div class="card reveal">
+      <span class="overline" style="background:rgba(255,255,255,.12);color:var(--mid)">لنبدأ الحكاية</span>
+      <h2 class="title" style="color:#fff">تاريخك محجوزٌ للفرح</h2>
+      <form id="bookForm">
+        <input type="text" placeholder="الاسم الكريم" required>
+        <input type="tel" placeholder="رقم الجوال" required>
+        <select required>
+          <option value="" disabled selected>نوع المناسبة…</option>
+          <option>تنسيق ورد</option><option>حفل تخرج</option><option>خطوبة</option><option>عيد ميلاد</option>
+          <option>كوش أفراح</option><option>ولائم</option><option>تنسيق داخلي كامل</option><option>تنسيق خارجي كامل</option>
+        </select>
+        <input type="date" required>
+        <button class="btn primary" type="submit" style="justify-content:center">أرسل طلب الحجز</button>
+      </form>
+    </div>
+  </div>
+</section>
+<div id="toast">تم استلام طلبك بنجاح — سنتواصل معك قريبًا 🌸</div>
+
+<footer>
+  <div class="f-grid">
+    <div>
+      <a class="logo" href="#top">
+      <span style="direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;line-height:0" aria-label="ToolCan">
+        <svg viewBox="0 0 600 200" width="170" height="56.67" role="img" aria-hidden="true">
+          <text x="50%" y="58%" text-anchor="middle" dominant-baseline="middle"
+            font-family="'Playfair Display','Bodoni 72','Didot',Georgia,serif"
+            font-size="78" font-weight="500" letter-spacing="2" fill="#F6E7F3">TOOLCAN</text>
+          <path d="M 175 55 C 215 30, 260 22, 300 30 C 340 38, 375 50, 420 56" fill="none" stroke="#F6E7F3" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M 420 56 L 432 50 L 426 60" fill="none" stroke="#F6E7F3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+      <p style="opacity:.8; font-size:.9rem; margin-top:12px; max-width:36ch">مؤسسة متخصصة لتنسيق الحفلات والمناسبات — نحول التفاصيل إلى ذكريات.</p>
+      <a class="wa" href="https://wa.me/966500000000" style="margin-top:16px">💬 واتساب مباشر</a>
+    </div>
+    <div>
+      <h4>تخصصاتنا</h4>
+      <a href="#services">تنسيق ورد</a><a href="#services">كوش أفراح</a><a href="#services">حفلات تخرج</a><a href="#services">أعياد ميلاد</a><a href="#services">ولائم</a>
+    </div>
+    <div>
+      <h4>تواصل</h4>
+      <a href="#book">احجز موعدك</a><a href="#gallery">معرض الأعمال</a><a href="tel:+966500000000">0500 000 000</a><a href="#">الرياض — السعودية</a>
+    </div>
+  </div>
+  <div class="f-bottom"><span>© 2026 مؤسسة أجواء</span><span>صُنع بحبٍّ وورد 🌸</span></div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+/* شريط التقدم + الهيدر */
+const prog = $('#progress'), hdr = $('#hdr');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  prog.style.transform = 'scaleX(' + (h.scrollTop / (h.scrollHeight - h.clientHeight) || 0) + ')';
+  hdr.classList.toggle('scrolled', h.scrollTop > 30);
+}, {passive:true});
+
+/* قائمة الجوال */
+const mNav = $('#mobileNav');
+$('#menuBtn').onclick = () => mNav.classList.toggle('open');
+mNav.querySelectorAll('a').forEach(a => a.onclick = () => mNav.classList.remove('open'));
+
+/* بتلات عائمة (خفيفة) */
+if(!RM){
+  const box = $('#petals');
+  const n = (navigator.hardwareConcurrency || 8) <= 4 ? 7 : 13;
+  for(let i=0;i<n;i++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    const s = 10 + Math.random()*14;
+    p.style.cssText = 'left:'+(Math.random()*100)+'%;width:'+s+'px;height:'+s+'px;'
+      + '--t:'+(9+Math.random()*9)+'s;--dl:-'+(Math.random()*14)+'s;--sw:'+(Math.random()*160-80)+'px';
+    box.appendChild(p);
+  }
+}
+
+/* كشف العناصر عند التمرير */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.18});
+$$('.reveal, #gallery, #stepsLine').forEach(el => io.observe(el));
+
+/* الهيرو عند التحميل */
+addEventListener('load', () => setTimeout(() => $('.hero').classList.add('in'), 150));
+
+/* العدّادات */
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if(!e.isIntersecting) return;
+  const el = e.target, end = +el.dataset.n, t0 = performance.now();
+  (function tick(t){
+    const k = Math.min((t - t0)/1400, 1);
+    el.textContent = Math.round(end * (1-Math.pow(1-k,3)));
+    if(k < 1) requestAnimationFrame(tick);
+  })(t0);
+  cio.unobserve(el);
+}), {threshold:.6});
+$$('.num[data-n]').forEach(el => cio.observe(el));
+
+/* الميل ثلاثي الأبعاد (ماوس + جيروسكوب) */
+function tilt(el, amp){
+  if(RM || !el) return;
+  let tx=0, ty=0, cx=0, cy=0;
+  const loop = () => { cx += (tx-cx)*.08; cy += (ty-cy)*.08;
+    el.style.setProperty('--rx', (cy*amp)+'deg'); el.style.setProperty('--ry', (cx*amp)+'deg');
+    requestAnimationFrame(loop); };
+  if(matchMedia('(pointer:fine)').matches){
+    addEventListener('mousemove', e => { tx = (e.clientX/innerWidth - .5)*2; ty = (e.clientY/innerHeight - .5)*-2; });
+    loop();
+  } else if(typeof DeviceOrientationEvent !== 'undefined'){
+    const attach = () => addEventListener('deviceorientation', e => {
+      if(e.gamma == null) return;
+      tx = Math.max(-1, Math.min(1, e.gamma/30)); ty = Math.max(-1, Math.min(1, (e.beta-45)/30));
+    });
+    if(typeof DeviceOrientationEvent.requestPermission === 'function'){
+      const b = document.createElement('button');
+      b.textContent = '📱 فعّل ميل الهاتف'; b.className = 'tour-btn'; b.style.marginTop = '14px';
+      $('.g-head').appendChild(b);
+      b.onclick = () => DeviceOrientationEvent.requestPermission().then(r => { if(r==='granted'){ attach(); b.remove(); } });
+    } else attach();
+    loop();
+  }
+}
+tilt($('#glassCard'), 9);
+tilt($('#stage'), 5);
+
+/* فلاتر المعرض */
+$$('.chip').forEach(ch => ch.onclick = () => {
+  $$('.chip').forEach(c => c.classList.remove('on')); ch.classList.add('on');
+  const f = ch.dataset.f;
+  $$('.polaroid').forEach(p => p.classList.toggle('hide', f !== 'all' && p.dataset.cat !== f));
+});
+
+/* Lightbox + Ken Burns + سحب + جولة تلقائية */
+const lb = $('#lightbox'), lbPhoto = $('#lbPhoto');
+let items = [], idx = 0, tour = null;
+function visible(){ return $$('.polaroid').filter(p => !p.classList.contains('hide')); }
+function show(i){
+  items = visible(); idx = (i + items.length) % items.length;
+  const p = items[idx];
+  $('#lbEmoji').textContent = p.dataset.e;
+  $('#lbTitle').textContent = p.dataset.title;
+  $('#lbCat').textContent   = p.querySelector('figcaption i').textContent;
+  lbPhoto.style.setProperty('--g1', p.style.getPropertyValue('--g1'));
+  lbPhoto.style.setProperty('--g2', p.style.getPropertyValue('--g2'));
+}
+function openLB(i){ show(i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; stopTour(); }
+$('#lbClose').onclick = closeLB;
+$('#lbNext').onclick  = () => show(idx+1);
+$('#lbPrev').onclick  = () => show(idx-1);
+lb.addEventListener('click', e => { if(e.target === lb) closeLB(); });
+$$('.polaroid').forEach(p => p.addEventListener('click', () => openLB(visible().indexOf(p))));
+/* سحب باللمس */
+let sx = null;
+lb.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+lb.addEventListener('touchend', e => {
+  if(sx == null) return;
+  const dx = e.changedTouches[0].clientX - sx;
+  if(dx < -40) show(idx+1); else if(dx > 40) show(idx-1);
+  sx = null;
+}, {passive:true});
+/* الجولة التلقائية */
+function stopTour(){ if(tour){ clearInterval(tour); tour = null; $('#tourBtn').textContent = '▶ جولة تلقائية في الأعمال'; } }
+$('#tourBtn').onclick = () => {
+  if(tour){ stopTour(); closeLB(); return; }
+  openLB(0);
+  $('#tourBtn').textContent = '⏸ إيقاف الجولة';
+  tour = setInterval(() => show(idx+1), 3000);
+};
+})();
+
+/* نموذج الحجز */
+document.getElementById('bookForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const t = document.getElementById('toast');
+  t.classList.add('show'); e.target.reset();
+  setTimeout(() => t.classList.remove('show'), 3500);
+});
+</script>
+</body>
+</html>
