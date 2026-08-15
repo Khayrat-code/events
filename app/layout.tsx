@@ -20,7 +20,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body className="cinema-mode">
+        <div className="vmark" aria-hidden="true">TOLKAN</div>
+        {children}
+      </body>
     </html>
   );
 }

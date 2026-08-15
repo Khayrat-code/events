@@ -80,12 +80,13 @@ export function Gallery() {
     <>
       <section id="gallery">
         <div className="wrap">
-          <div className="g-head reveal">
+          <div className="g-head reveal cinema-head" style={{ alignItems: "flex-end", textAlign: "right" }}>
             <div>
-              <span className="overline">مسرح الذكريات</span>
-              <h2 className="title" style={{ color: "#fff" }}>
+              <span className="ed-eyebrow">مسرح الذكريات</span>
+              <h2 className="title" style={{ color: "var(--c-bone)" }}>
                 صورٌ نثرناها… فجمعتها الأضواء
               </h2>
+              <hr className="ed-rule" style={{ marginInline: "0" }} />
             </div>
             <button
               className="tour-btn"

@@ -9,9 +9,10 @@ export function Steps() {
   return (
     <section id="steps">
       <div className="wrap">
-        <div className="reveal" style={{ textAlign: "center" }}>
-          <span className="overline">طريقتنا</span>
+        <div className="cinema-head reveal">
+          <span className="ed-eyebrow">طريقتنا</span>
           <h2 className="title">أربع خطوات… وتقام الحفلة</h2>
+          <hr className="ed-rule" />
         </div>
         <div className="steps" id="stepsLine">
           {STEPS.map((s, i) => (

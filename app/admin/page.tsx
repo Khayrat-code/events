@@ -61,6 +61,9 @@ interface Message {
   name: string
   email: string
   phone?: string
+  service?: string
+  musician?: string
+  event_date?: string
   message: string
   type?: string
   subject?: string
@@ -130,10 +133,17 @@ function MessagesPanel() {
                   {m.phone && <span style={{ color: "var(--brand)", fontSize: 12 }}>{m.phone}</span>}
                 </div>
                 <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <span style={{ fontSize: 11, color: "#7c5a72", background: "var(--lav2)", borderRadius: 999, padding: "2px 10px" }}>{m.source === "contact" ? "تواصل" : m.type === "complaint" ? "شكوى" : m.type === "suggestion" ? "اقتراح" : m.type || "—"}</span>
+                  <span style={{ fontSize: 11, color: "#7c5a72", background: "var(--lav2)", borderRadius: 999, padding: "2px 10px" }}>{m.source === "contact" ? "حجز" : m.type === "complaint" ? "شكوى" : m.type === "suggestion" ? "اقتراح" : m.type || "—"}</span>
                   <span style={{ fontSize: 11, color: "#a98c9f" }}>{new Date(m.created_at).toLocaleDateString("ar-SA")}</span>
                 </div>
               </div>
+              {(m.service || m.musician || m.event_date) && (
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
+                  {m.service && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>الخدمة: {m.service}</span>}
+                  {m.musician && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>عازف: {m.musician}</span>}
+                  {m.event_date && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>التاريخ: {new Date(m.event_date).toLocaleDateString("ar-SA")}</span>}
+                </div>
+              )}
               <div style={{ fontSize: 14, color: "var(--ink)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>{m.message}</div>
             </div>
           ))}

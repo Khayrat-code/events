@@ -16,9 +16,10 @@ export function Voices() {
   return (
     <section id="voices">
       <div className="wrap">
-        <div className="reveal" style={{ textAlign: "center" }}>
-          <span className="overline">قالوا عنا</span>
+        <div className="cinema-head reveal">
+          <span className="ed-eyebrow">قالوا عنا</span>
           <h2 className="title">اسحب لتقرأ حكاياتهم</h2>
+          <hr className="ed-rule" />
         </div>
         <div style={{ position: "relative" }}>
           <button

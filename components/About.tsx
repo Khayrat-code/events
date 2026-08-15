@@ -2,14 +2,15 @@ export function About() {
   return (
     <section id="about">
       <div className="wrap about-grid">
-        <div className="reveal">
-          <span className="overline">لماذا تولكان؟</span>
+        <div className="reveal cinema-head" style={{ alignItems: "flex-start", textAlign: "right" }}>
+          <span className="ed-eyebrow">لماذا تولكان؟</span>
           <h2 className="title">
             نحن لا نزيّن المكان…
             <br />
             نحن نبني تولكان
           </h2>
-          <p className="sub" style={{ marginTop: 14 }}>
+          <hr className="ed-rule" style={{ marginInline: "0" }} />
+          <p className="sub" style={{ marginTop: 14, color: "var(--c-mist)" }}>
             فريقنا يرافقك من فكرة المناسبة حتى لحظة وداع آخر ضيف: تصميمٌ يخصّك وحدك،
             خاماتٌ فاخرة، وتنفيذٌ دقيق في الموعد.
           </p>

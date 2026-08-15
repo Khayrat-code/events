@@ -26,6 +26,9 @@ create table if not exists public.contact_submissions (
   name            text not null,
   email           text not null,
   phone           text,
+  service         text,
+  musician        text,
+  event_date      date,
   message         text not null,
   attachment_url  text,
   read            boolean not null default false,
@@ -33,6 +36,9 @@ create table if not exists public.contact_submissions (
 );
 
 alter table public.contact_submissions add column if not exists attachment_url text;
+alter table public.contact_submissions add column if not exists service text;
+alter table public.contact_submissions add column if not exists musician text;
+alter table public.contact_submissions add column if not exists event_date date;
 
 create index if not exists contact_submissions_created_idx
   on public.contact_submissions (created_at desc);

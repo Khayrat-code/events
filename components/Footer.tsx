@@ -124,7 +124,7 @@ export function Footer() {
           <a className="logo" href="#top">
             <Logo size="lg" tone="light" />
           </a>
-          <p style={{ opacity: 0.8, fontSize: ".9rem", marginTop: 12, maxWidth: "36ch" }}>
+          <p style={{ opacity: 0.85, fontSize: ".9rem", marginTop: 12, maxWidth: "36ch", color: "inherit" }}>
             مؤسسة متخصصة لتنسيق الحفلات والمناسبات — نحول التفاصيل إلى ذكريات.
           </p>
           <a className="wa" href="https://wa.me/966583131400" style={{ marginTop: 16 }}>

@@ -7,6 +7,7 @@ interface LogoProps {
 const COLORS = {
   default: "#421D36",
   light: "#F6E7F3",
+  cinema: "#f3ece0",
 }
 
 /**
@@ -22,6 +23,7 @@ export function Logo({ size = "md", tone = "default" }: LogoProps) {
   return (
     <span
       aria-label="ToolCan"
+      className="logo-mark"
       style={{
         direction: "ltr",
         unicodeBidi: "isolate",

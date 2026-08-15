@@ -1,0 +1,17 @@
+:root {
+  /* Kage-derived cinematic palette */
+  --c-ink: #0a0c10;        /* near-black */
+  --c-charcoal: #11161f;   /* blue-charcoal */
+  --c-amber: #d89a4a;      /* warm amber uplight */
+  --c-amber-soft: #e8b974;
+  --c-bone: #f3ece0;       /* bone white */
+  --c-vermilion: #c8462f;  /* vermilion moon accent (nudge to rose-gold) */
+  --c-rose: #b8656a;       /* rose-gold variant */
+  --c-mist: #9aa3b2;       /* depth haze */
+
+  /* Display + body stacks. Fallbacks render immediately; self-hosted
+     Almarai/Changa/Playfair swap in via @font-face in Phase 3. */
+  --f-display: "Changa", "Segoe UI", "Tajawal", system-ui, sans-serif;
+  --f-body: "Almarai", "Segoe UI", "Tajawal", system-ui, sans-serif;
+  --f-latin: "Playfair Display", Georgia, "Times New Roman", serif;
+}
