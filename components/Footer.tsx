@@ -3,17 +3,6 @@ import type { Dictionary, Locale } from "@/lib/i18n"
 
 /* ============ Inline SVG brand/trust icons ============ */
 
-function MawthoogIcon({ size = 36 }: { size?: number }) {
-  return (
-    <span className="trust-badge" style={{ width: size, height: size, borderRadius: 999, background: "#0E5A36" }}>
-      <svg viewBox="0 0 24 24" width={size * 0.56} height={size * 0.56} fill="none">
-        <path d="M12 2.5 L19.5 5.5 V11.5 C19.5 16 15.5 19.5 12 20.5 C8.5 19.5 4.5 16 4.5 11.5 V5.5 Z" fill="#F5F1EA" />
-        <path d="M8.3 12 L11 14.7 L15.7 9.5" stroke="#0E5A36" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-      </svg>
-    </span>
-  )
-}
-
 function CRIcon({ size = 36 }: { size?: number }) {
   return (
     <span className="trust-badge" style={{ width: size, height: size, borderRadius: 8, background: "rgba(245, 241, 234, 0.08)", border: "1px solid rgba(245, 241, 234, 0.18)" }}>
@@ -145,10 +134,26 @@ export function Footer({ dict, lang }: FooterProps) {
 
           {/* Trust section */}
           <div className="f-trust-card">
-            <MawthoogIcon size={40} />
+            <img
+              src="/trust/business-verified.png"
+              alt={dict.verifiedLabel}
+              style={{ width: 46, height: 46, borderRadius: 12, objectFit: "cover", flexShrink: 0 }}
+            />
             <div className="f-trust-text">
-              <span className="f-trust-main">{dict.trustMain}</span>
-              <span className="f-trust-sub">{dict.trustSub}</span>
+              <span className="f-trust-main">{dict.verifiedLabel}</span>
+            </div>
+          </div>
+
+          {/* VAT */}
+          <div className="f-trust-card" style={{ marginTop: 12 }}>
+            <img
+              src="/trust/vat-badge.png"
+              alt={dict.vatLabel}
+              style={{ width: 38, height: 46, borderRadius: 8, objectFit: "cover", flexShrink: 0 }}
+            />
+            <div className="f-trust-text">
+              <span className="f-trust-sub">{dict.vatLabel}</span>
+              <span className="f-trust-main"><span dir="ltr" className="f-cr-num">{dict.vatNumber}</span></span>
             </div>
           </div>
 
