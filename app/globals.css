@@ -27,6 +27,9 @@ body{
   font-family:'Tajawal',system-ui,sans-serif;
   background:var(--mist); color:var(--ink);
   line-height:1.7; font-size:16px;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 h1,h2,h3,.display{font-family:'Tajawal',sans-serif; line-height:1.25}
 img{max-width:100%}
@@ -778,8 +781,6 @@ body.cinema-mode .f-bottom > span{color:#c5cad6}
 body.cinema-mode .f-soc{color:rgba(255,255,255,.72); border-color:rgba(255,255,255,.18)}
 body.cinema-mode .f-soc:hover{color:var(--c-amber); border-color:var(--c-amber)}
 body.cinema-mode .pay-badge-icon{color:#0a0c10}
-body.cinema-mode .logo-mark svg text{fill:#f3ece0!important}
-body.cinema-mode .logo-mark svg path{fill:#f3ece0!important; stroke:#f3ece0!important}
 body.cinema-mode .btn.primary{background:var(--c-amber); color:#0a0c10}
 body.cinema-mode .btn.ghost{border-color:rgba(255,255,255,.3); color:#fff; background:rgba(10,12,16,.4)}
 body.cinema-mode .btn.ghost:hover{border-color:var(--c-amber)}
@@ -887,8 +888,6 @@ body.cinema-mode #menuBtn,
 body.cinema-mode .logo,
 body.cinema-mode .mq-track,
 body.cinema-mode .marquee{color:#fff!important}
-body.cinema-mode .logo-mark svg text{fill:#fff!important}
-body.cinema-mode .logo-mark svg path{fill:#fff!important; stroke:#fff!important}
 body.cinema-mode #rail a{color:rgba(255,255,255,.55)!important}
 body.cinema-mode #rail a.on{color:var(--c-amber)!important}
 

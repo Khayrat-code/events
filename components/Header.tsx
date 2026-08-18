@@ -27,7 +27,7 @@ export function Header({ dict, lang }: HeaderProps) {
     <>
       <header id="hdr">
         <a className="logo" href="#top">
-          <Logo />
+          <Logo tone="light" />
         </a>
         <nav className="desk">
           {dict.links.map((l) => (
