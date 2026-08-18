@@ -40,7 +40,7 @@ export const services: Service[] = [
     tags: ["ممرات وردية", "جداريات زهور", "بوكيهات"],
     tagsEn: ["Aisles", "Floral Walls", "Bouquets"],
     colorClass: "c1", isLight: true, emoji: "🌸",
-    image: S("wrd", "entr.webp")
+    image: "/services/flowers.png"
   },
   {
     num: "02", title: "حفل تخرج", titleEn: "Graduation",
@@ -49,7 +49,7 @@ export const services: Service[] = [
     tags: ["ركن تصوير", "لوحات تهنئة", "إضاءة احتفالية"],
     tagsEn: ["Photo Corner", "Boards", "Festive Lighting"],
     colorClass: "c2", isLight: true, emoji: "🎓",
-    image: S("graduation", "1.jpg")
+    image: "/services/graduation.jpg"
   },
   {
     num: "03", title: "خطوبة", titleEn: "Engagement",
@@ -58,7 +58,7 @@ export const services: Service[] = [
     tags: ["كوشة خطوبة", "طاولات ضيافة", "إنارة دافئة"],
     tagsEn: ["Engagement Stage", "Hospitality", "Warm Lighting"],
     colorClass: "c3", isLight: true, emoji: "💍",
-    image: S("khotoba", "1.webp")
+    image: "/services/engagement.jpg"
   },
   {
     num: "04", title: "عيد ميلاد", titleEn: "Birthday",
@@ -67,7 +67,7 @@ export const services: Service[] = [
     tags: ["ثيم مخصص", "ركن حلويات", "بالونات وأقواس"],
     tagsEn: ["Custom Theme", "Dessert Corner", "Balloon Arches"],
     colorClass: "c4", isLight: false, emoji: "🎂",
-    image: S("birth_day", "1.jpg")
+    image: "/services/birthday.jpg"
   },
   {
     num: "05", title: "كوش أفراح", titleEn: "Wedding Stages",
@@ -76,7 +76,7 @@ export const services: Service[] = [
     tags: ["تصميم حصري", "خامات فاخرة", "تناغم مع القاعة"],
     tagsEn: ["Exclusive Design", "Premium Materials", "Hall Harmony"],
     colorClass: "c5", isLight: false, emoji: "👑",
-    image: S("kosha", "1.jpg")
+    image: "/services/kosha.jpg"
   },
   {
     num: "06", title: "ولائم", titleEn: "Banquets",
@@ -85,7 +85,7 @@ export const services: Service[] = [
     tags: ["تنسيق طاولات", "بوفيهات أنيقة", "أدوات فاخرة"],
     tagsEn: ["Table Styling", "Elegant Buffets", "Serviceware"],
     colorClass: "c6", isLight: false, emoji: "🍽️",
-    image: S("wlaim", "1.jpg")
+    image: "/services/banquets.png"
   },
   {
     num: "07", title: "تنسيق داخلي كامل", titleEn: "Full Interior",
@@ -94,7 +94,7 @@ export const services: Service[] = [
     tags: ["إضاءة معمارية", "أسقف وستائر", "مسرح وممرات"],
     tagsEn: ["Architectural Light", "Ceilings & Drapes", "Stage & Aisles"],
     colorClass: "c7", isLight: false, emoji: "🕯️",
-    image: S("inner_space", "1.jpg")
+    image: "/services/interior.jpg"
   },
   {
     num: "08", title: "تنسيق خارجي كامل", titleEn: "Full Outdoor",
@@ -103,7 +103,7 @@ export const services: Service[] = [
     tags: ["خيام ملكية", "جلسات خارجية", "إنارة معلقة"],
     tagsEn: ["Royal Tents", "Outdoor Lounges", "Hanging Lights"],
     colorClass: "c8", isLight: false, emoji: "⛺",
-    image: S("outer_space", "1.jpg")
+    image: "/services/outdoor.jpg"
   },
 ]
 

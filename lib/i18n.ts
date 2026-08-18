@@ -89,17 +89,17 @@ const ar = {
     title: "عازفين على مهارة وفن",
     items: [
       {
-        img: "/violin.png",
+        img: "/violin.jpg",
         name: "كمنجة",
         desc: "نغمات الكمنجة تضيف لمسة راقية تكمل أجواء مناسبتك",
       },
       {
-        img: "/piano.png",
+        img: "/piano.jpg",
         name: "بيانو",
         desc: "ألحان البيانو تعطي لحظاتك طابعًا دافئ وأنيق",
       },
       {
-        img: "/oud.png",
+        img: "/oud.jpg",
         name: "عود",
         desc: "صوت العود ياخذك لأجواء عربية أصيلة تفرح القلب",
       },
@@ -301,17 +301,17 @@ const en: typeof ar = {
     title: "Musicians of Skill and Artistry",
     items: [
       {
-        img: "/violin.png",
+        img: "/violin.jpg",
         name: "Violin",
         desc: "Violin melodies add an elegant touch that completes your occasion's atmosphere",
       },
       {
-        img: "/piano.png",
+        img: "/piano.jpg",
         name: "Piano",
         desc: "Piano tunes give your moments a warm, elegant character",
       },
       {
-        img: "/oud.png",
+        img: "/oud.jpg",
         name: "Oud",
         desc: "The sound of the oud takes you to authentic arabesque moods that warm the heart",
       },
