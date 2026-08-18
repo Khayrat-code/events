@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import "../globals.css"
+import { Analytics } from "@/components/Analytics"
 import { direction, getDictionary, isLocale, locales, type Locale } from "@/lib/i18n"
 
 export function generateStaticParams() {
@@ -37,6 +38,7 @@ export default function LocaleLayout({
       </head>
       <body className="cinema-mode">
         <div className="vmark" aria-hidden="true">TOLKAN</div>
+        <Analytics />
         {children}
       </body>
     </html>

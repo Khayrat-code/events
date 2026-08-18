@@ -12,7 +12,6 @@ import { Footer } from "@/components/Footer"
 import { ProgressBar } from "@/components/ProgressBar"
 import { Petals } from "@/components/Petals"
 import { Effects } from "@/components/Effects"
-import { Analytics } from "@/components/Analytics"
 import { Cinema } from "@/components/Cinema/Cinema"
 import { Cursor } from "@/components/Cursor"
 import { Rail } from "@/components/Rail"
@@ -29,7 +28,6 @@ export default function Page({ params }: { params: { lang: string } }) {
       <ProgressBar />
       <Petals />
       <Effects />
-      <Analytics />
       <Cursor />
       <Rail label={t.railLabel} lang={lang} />
       <Header dict={t.nav} lang={lang} />

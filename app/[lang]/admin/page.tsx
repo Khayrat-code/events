@@ -64,6 +64,7 @@ interface Message {
   service?: string
   musician?: string
   event_date?: string
+  budget?: string
   message: string
   type?: string
   subject?: string
@@ -137,11 +138,12 @@ function MessagesPanel() {
                   <span style={{ fontSize: 11, color: "#a98c9f" }}>{new Date(m.created_at).toLocaleDateString("ar-SA")}</span>
                 </div>
               </div>
-              {(m.service || m.musician || m.event_date) && (
+              {(m.service || m.musician || m.event_date || m.budget) && (
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
                   {m.service && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>الخدمة: {m.service}</span>}
                   {m.musician && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>عازف: {m.musician}</span>}
                   {m.event_date && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>التاريخ: {new Date(m.event_date).toLocaleDateString("ar-SA")}</span>}
+                  {m.budget && <span style={{ fontSize: 12, background: "rgba(142,58,98,.12)", color: "var(--brand)", borderRadius: 8, padding: "3px 10px", fontWeight: 700 }}>الميزانية: {m.budget}</span>}
                 </div>
               )}
               <div style={{ fontSize: 14, color: "var(--ink)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>{m.message}</div>
@@ -257,45 +259,151 @@ function AnalyticsPanel() {
   const today = new Date(); today.setHours(0, 0, 0, 0)
   const todayVisitors = sessions.filter((s) => new Date(s.started_at) >= today).length
 
+  const last7: { label: string; count: number }[] = []
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - i)
+    const next = new Date(d); next.setDate(d.getDate() + 1)
+    const count = sessions.filter((s) => {
+      const st = new Date(s.started_at)
+      return st >= d && st < next
+    }).length
+    last7.push({ label: d.toLocaleDateString("ar-SA", { weekday: "short" }), count })
+  }
+  const maxDaily = Math.max(...last7.map((d) => d.count), 1)
+
+  const pageCounts: Record<string, number> = {}
+  events.forEach((e) => { pageCounts[e.path] = (pageCounts[e.path] || 0) + 1 })
+  const topPages = Object.entries(pageCounts).sort((a, b) => b[1] - a[1]).slice(0, 6)
+
+  const devices: Record<string, number> = { desktop: 0, mobile: 0, tablet: 0 }
+  sessions.forEach((s) => { const d = s.device || "desktop"; devices[d] = (devices[d] || 0) + 1 })
+  const totalDevices = Object.values(devices).reduce((a, b) => a + b, 0) || 1
+
+  const bounced = sessions.filter((s) => (s.page_count || 0) <= 1).length
+  const bounceRate = sessions.length > 0 ? Math.round((bounced / sessions.length) * 100) : 0
+
+  const durations = sessions.map((s) => {
+    const start = new Date(s.started_at).getTime()
+    const end = new Date(s.last_seen_at || s.started_at).getTime()
+    return Math.max(0, (end - start) / 1000)
+  })
+  const avgDuration = durations.length > 0 ? Math.round(durations.reduce((a, b) => a + b, 0) / durations.length) : 0
+
+  const fmtDur = (s: number) => {
+    if (s < 60) return `${s}ث`
+    const m = Math.floor(s / 60); const r = s % 60
+    return `${m}د ${r}ث`
+  }
+
   return (
     <div>
       <h2 style={{ fontSize: 22, fontWeight: 800, color: "var(--deep)", marginBottom: 20 }}>التحليلات</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 14, marginBottom: 28 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 14, marginBottom: 28 }}>
         <Kpi label="الزوار" value={totalVisitors} />
         <Kpi label="المشاهدات" value={totalPageViews} />
         <Kpi label="زيارات اليوم" value={todayVisitors} />
         <Kpi label="الجلسات" value={sessions.length} />
+        <Kpi label="معدل الارتداد" value={`${bounceRate}%`} />
+        <Kpi label="متوسط المدة" value={fmtDur(avgDuration)} />
       </div>
 
       {events.length === 0 ? (
         <div style={{ background: "var(--paper)", border: "1px dashed var(--lav2)", borderRadius: "var(--r)", padding: 48, textAlign: "center", color: "#7c5a72" }}>لا توجد بيانات بعد</div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Visitors per day */}
+          <Card title="الزوار خلال آخر ٧ أيام">
+            <div style={{ display: "flex", alignItems: "flex-end", gap: 10, height: 140, padding: "8px 4px 0" }}>
+              {last7.map((d, i) => (
+                <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, height: "100%", justifyContent: "flex-end" }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: "var(--brand)" }}>{d.count}</span>
+                  <div style={{ width: "70%", maxWidth: 36, height: `${(d.count / maxDaily) * 100}%`, minHeight: d.count > 0 ? 4 : 0, background: "var(--brand)", borderRadius: 6, opacity: 0.85, transition: "height .3s" }} />
+                  <span style={{ fontSize: 11, color: "#7c5a72" }}>{d.label}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
+            {/* Top pages */}
+            <Card title="أكثر الصفحات زيارة">
+              {topPages.map(([path, count]) => (
+                <div key={path} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid var(--lav)" }}>
+                  <span style={{ fontSize: 13, color: "var(--ink)", fontFamily: "monospace" }}>{path}</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: "var(--brand)", background: "rgba(142,58,98,.1)", borderRadius: 999, padding: "2px 10px" }}>{count}</span>
+                </div>
+              ))}
+            </Card>
+
+            {/* Device breakdown */}
+            <Card title="الأجهزة">
+              {Object.entries(devices).map(([device, count]) => (
+                <div key={device} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0" }}>
+                  <span style={{ fontSize: 13, color: "var(--ink)", minWidth: 50 }}>{device === "mobile" ? "جوال" : device === "tablet" ? "لوحي" : "كمبيوتر"}</span>
+                  <div style={{ flex: 1, height: 10, background: "var(--lav)", borderRadius: 999, overflow: "hidden" }}>
+                    <div style={{ width: `${(count / totalDevices) * 100}%`, height: "100%", background: "var(--brand)", borderRadius: 999, transition: "width .3s" }} />
+                  </div>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#7c5a72", minWidth: 30, textAlign: "end" }}>{count}</span>
+                </div>
+              ))}
+            </Card>
+          </div>
+
           {/* Recent sessions */}
-          <div style={{ background: "var(--paper)", border: "1px solid var(--lav2)", borderRadius: "var(--r)", padding: 18 }}>
-            <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 12 }}>آخر الجلسات</div>
+          <Card title="آخر الجلسات">
             <div style={{ overflowX: "auto" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-                <thead><tr style={{ borderBottom: "1px solid var(--lav2)" }}><th style={{ textAlign: "start", padding: "8px 10px", color: "#7c5a72", fontWeight: 600 }}>الوقت</th><th style={{ textAlign: "start", padding: "8px 10px", color: "#7c5a72", fontWeight: 600 }}>المصدر</th><th style={{ textAlign: "start", padding: "8px 10px", color: "#7c5a72", fontWeight: 600 }}>اللغة</th><th style={{ textAlign: "end", padding: "8px 10px", color: "#7c5a72", fontWeight: 600 }}>الصفحات</th></tr></thead>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid var(--lav2)" }}>
+                    <th style={th}>الوقت</th>
+                    <th style={th}>المصدر</th>
+                    <th style={th}>الجهاز</th>
+                    <th style={th}>اللغة</th>
+                    <th style={{ ...th, textAlign: "end" }}>الصفحات</th>
+                    <th style={{ ...th, textAlign: "end" }}>المدة</th>
+                  </tr>
+                </thead>
                 <tbody>
                   {sessions.slice(0, 10).map((s) => {
                     const ref = (s.referrer || "").replace(/^https?:\/\//, "").split("/")[0] || "—"
-                    return <tr key={s.id} style={{ borderBottom: "1px solid var(--lav)" }}><td style={{ padding: "8px 10px" }}>{new Date(s.started_at).toLocaleString("ar-SA")}</td><td style={{ padding: "8px 10px" }}>{ref}</td><td style={{ padding: "8px 10px" }}>{s.language || "—"}</td><td style={{ textAlign: "end", padding: "8px 10px" }}>{s.page_count}</td></tr>
+                    const dur = Math.max(0, Math.round((new Date(s.last_seen_at || s.started_at).getTime() - new Date(s.started_at).getTime()) / 1000))
+                    return (
+                      <tr key={s.id} style={{ borderBottom: "1px solid var(--lav)" }}>
+                        <td style={td}>{new Date(s.started_at).toLocaleString("ar-SA", { dateStyle: "short", timeStyle: "short" })}</td>
+                        <td style={td}>{ref}</td>
+                        <td style={td}>{s.device === "mobile" ? "جوال" : s.device === "tablet" ? "لوحي" : "كمبيوتر"}</td>
+                        <td style={td}>{s.language || "—"}</td>
+                        <td style={{ ...td, textAlign: "end" }}>{s.page_count || 0}</td>
+                        <td style={{ ...td, textAlign: "end" }}>{fmtDur(dur)}</td>
+                      </tr>
+                    )
                   })}
                 </tbody>
               </table>
             </div>
-          </div>
+          </Card>
         </div>
       )}
     </div>
   )
 }
 
-function Kpi({ label, value }: { label: string; value: number }) {
+const th: React.CSSProperties = { textAlign: "start", padding: "8px 10px", color: "#7c5a72", fontWeight: 600, fontSize: 12 }
+const td: React.CSSProperties = { padding: "8px 10px", color: "var(--ink)" }
+
+function Card({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div style={{ background: "var(--paper)", border: "1px solid var(--lav2)", borderRadius: "var(--r)", padding: 18 }}>
+      <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 12, fontSize: 15 }}>{title}</div>
+      {children}
+    </div>
+  )
+}
+
+function Kpi({ label, value }: { label: string; value: number | string }) {
   return (
     <div style={{ background: "var(--paper)", border: "1px solid var(--lav2)", borderRadius: "var(--r)", padding: 20, boxShadow: "var(--sh)" }}>
-      <div style={{ fontFamily: "'Tajawal', sans-serif", fontSize: 32, fontWeight: 800, color: "var(--brand)", lineHeight: 1 }}>{value}</div>
+      <div style={{ fontFamily: "'Tajawal', sans-serif", fontSize: 28, fontWeight: 800, color: "var(--brand)", lineHeight: 1 }}>{value}</div>
       <div style={{ marginTop: 6, fontSize: 12, color: "#7c5a72", fontWeight: 700 }}>{label}</div>
     </div>
   )

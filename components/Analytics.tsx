@@ -21,12 +21,19 @@ function getOrCreateSessionId(): string {
   return id
 }
 
+function detectDevice(ua: string): "mobile" | "tablet" | "desktop" {
+  if (/iPad|Tablet|PlayBook|Silk/i.test(ua)) return "tablet"
+  if (/Mobi|Android|iPhone|iPod|Windows Phone/i.test(ua)) return "mobile"
+  return "desktop"
+}
+
 export function Analytics() {
   useEffect(() => {
     if (location.pathname.startsWith("/admin")) return
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     if (!url || !key) return
+
     const sessionId = getOrCreateSessionId()
     let supabase
     try {
@@ -35,19 +42,56 @@ export function Analytics() {
       return
     }
 
+    const payload = {
+      session_id: sessionId,
+      referrer: document.referrer || null,
+      user_agent: navigator.userAgent,
+      device: detectDevice(navigator.userAgent),
+      screen_width: window.innerWidth,
+      screen_height: window.innerHeight,
+      language: navigator.language,
+      last_seen_at: new Date().toISOString(),
+    }
+
     const record = async () => {
-      const payload = {
-        session_id: sessionId,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent,
-        screen_width: window.innerWidth,
-        screen_height: window.innerHeight,
-        language: navigator.language,
-      }
-      await supabase.from(TABLES.analyticsSessions).upsert(payload, { onConflict: "session_id", ignoreDuplicates: true })
-      await supabase.from(TABLES.analyticsEvents).insert({ session_id: sessionId, path: location.pathname, referrer: document.referrer || null, duration_ms: 0 })
+      await supabase
+        .from(TABLES.analyticsSessions)
+        .upsert(payload, { onConflict: "session_id" })
+      await supabase
+        .from(TABLES.analyticsEvents)
+        .insert({
+          session_id: sessionId,
+          path: location.pathname,
+          referrer: document.referrer || null,
+          duration_ms: 0,
+        })
+      await supabase.rpc("increment_page_count", { sid: sessionId })
     }
     record().catch(() => {})
+
+    const touchLastSeen = () => {
+      try {
+        supabase
+          .from(TABLES.analyticsSessions)
+          .update({ last_seen_at: new Date().toISOString() })
+          .eq("session_id", sessionId)
+      } catch {}
+    }
+
+    const heartbeat = setInterval(touchLastSeen, 30000)
+
+    const onVisibility = () => {
+      if (document.hidden) touchLastSeen()
+    }
+
+    window.addEventListener("beforeunload", touchLastSeen)
+    document.addEventListener("visibilitychange", onVisibility)
+
+    return () => {
+      clearInterval(heartbeat)
+      window.removeEventListener("beforeunload", touchLastSeen)
+      document.removeEventListener("visibilitychange", onVisibility)
+    }
   }, [])
 
   return null
