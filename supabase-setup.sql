@@ -39,6 +39,7 @@ alter table public.contact_submissions add column if not exists attachment_url t
 alter table public.contact_submissions add column if not exists service text;
 alter table public.contact_submissions add column if not exists musician text;
 alter table public.contact_submissions add column if not exists event_date date;
+alter table public.contact_submissions add column if not exists budget text;
 
 create index if not exists contact_submissions_created_idx
   on public.contact_submissions (created_at desc);

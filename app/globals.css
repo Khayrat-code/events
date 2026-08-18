@@ -65,7 +65,7 @@ nav.desk a:hover::after{transform:scaleX(1)}
 .cta-sm{background:var(--brand); color:#fff; padding:9px 20px; border-radius:999px; font-weight:800; font-size:.85rem;
   box-shadow:0 10px 22px -10px var(--brand); transition:.3s}
 .cta-sm:hover{transform:translateY(-2px)}
-#menuBtn{display:grid; place-items:center; width:42px;height:42px;border-radius:12px; background:var(--lav); color:var(--ink)}
+#menuBtn{display:grid; place-items:center; width:46px;height:46px;border-radius:12px; background:var(--lav); color:var(--ink); font-size:1.4rem}
 #mobileNav{position:fixed; top:var(--headH); inset-inline:0; z-index:39; background:var(--paper);
   display:grid; gap:4px; padding:14px 20px 20px; box-shadow:var(--sh);
   transform:translateY(-110%); transition:.4s cubic-bezier(.2,.8,.2,1)}
@@ -134,10 +134,9 @@ nav.desk a:hover::after{transform:scaleX(1)}
 @keyframes bnc{ 50%{transform:translateY(8px)} }
 
 /* ============ الشريط المتحرك ============ */
-.marquee{background:var(--deep); color:var(--lav); overflow:hidden; padding:14px 0; position:relative; z-index:2}
-.mq-track{display:flex; gap:38px; width:max-content; animation:mq 26s linear infinite; font-family:'Changa'; font-weight:600; font-size:1rem; white-space:nowrap}
+.marquee{background:var(--deep); color:var(--lav); overflow:hidden; padding:10px 0; position:relative; z-index:2}
+.mq-track{display:flex; gap:30px; width:max-content; animation:mq 26s linear infinite; font-family:'Changa'; font-weight:600; font-size:.85rem; white-space:nowrap}
 .marquee:hover .mq-track{animation-play-state:paused}
-.mq-track i{color:var(--mid); font-style:normal}
 @keyframes mq{ to{transform:translateX(50%)} }
 
 /* ============ العناوين العامة ============ */
@@ -308,6 +307,14 @@ h2.title{font-size:clamp(1.6rem,5vw,2.6rem); font-weight:800; color:var(--deep)}
 #book input::placeholder{color:#D9B8D2}
 #book select option{color:var(--ink)}
 #book input:focus,#book select:focus{border-color:var(--mid); background:rgba(255,255,255,.16)}
+#book .fld{display:flex; flex-direction:column; gap:6px}
+#book .fld-label{font-size:.78rem; font-weight:700; color:#D9B8D2}
+#book .expect{margin-top:24px; padding:18px 20px; border-radius:16px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16)}
+#book .expect b{display:block; font-size:.92rem; margin-bottom:10px; color:#fff}
+#book .expect ul{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+#book .expect li{font-size:.85rem; color:#D9B8D2; padding-inline-start:20px; position:relative}
+#book .expect li::before{content:'✓'; position:absolute; inset-inline-start:0; color:var(--mid)}
 #toast{position:fixed; bottom:24px; inset-inline-start:50%; translate:50% 0; z-index:120;
   background:var(--brand); color:#fff; padding:14px 28px; border-radius:999px; font-weight:800;
   box-shadow:0 20px 40px -14px var(--brand); opacity:0; transform:translateY(20px); transition:.4s; pointer-events:none}
@@ -316,12 +323,12 @@ h2.title{font-size:clamp(1.6rem,5vw,2.6rem); font-weight:800; color:var(--deep)}
 /* ============ الفوتر ============ */
 footer{background:var(--deep); color:var(--lav); padding:50px clamp(18px,5vw,60px) 30px}
 .f-grid{max-width:1150px; margin-inline:auto; display:grid; gap:30px; padding-bottom:24px}
-@media(min-width:800px){ .f-grid{grid-template-columns:1.3fr 1fr 1fr} }
+@media(min-width:800px){ .f-grid{grid-template-columns:1.2fr 1fr} }
 footer h4{font-family:'Changa'; font-size:1.1rem; margin-bottom:12px; color:#fff}
 footer a{opacity:.85; display:block; padding:4px 0; font-size:.9rem}
 footer a:hover{opacity:1; color:var(--mid)}
 .f-bottom{max-width:1150px; margin:34px auto 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.15);
-  display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; font-size:.8rem;}
+  display:flex; flex-wrap:wrap; gap:14px; flex-direction:column; align-items:center; font-size:.8rem; text-align:center}
 .f-bottom > span{opacity:.8}
 .wa{display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff!important; opacity:1!important;
   padding:10px 22px; border-radius:999px; font-weight:800}
@@ -338,10 +345,10 @@ footer a:hover{opacity:1; color:var(--mid)}
 .f-complaints{color:var(--mid)!important; font-weight:800}
 
 /* ---- Payments ---- */
-.f-pay{display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:20px 0; max-width:1150px; margin-inline:auto;
+.f-pay{display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:20px 0; max-width:1150px; margin-inline:auto;
   border-top:1px solid rgba(255,255,255,.12)}
 .f-pay-label{font-size:12px; color:rgba(255,255,255,.48); flex-shrink:0}
-.f-pay-chips{display:flex; gap:10px; flex-wrap:wrap}
+.f-pay-chips{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
 .pay-badge{display:inline-flex; align-items:center; justify-content:center; width:62px; height:38px; border-radius:7px;
   background:#FFFFFF; border:1px solid rgba(0,0,0,.06); padding:9px; box-sizing:border-box; flex-shrink:0}
 .pay-badge-text{width:auto; padding:0 14px; gap:7px; color:#1F1F1F; font-size:12px; font-weight:600; white-space:nowrap}
@@ -354,7 +361,7 @@ footer a:hover{opacity:1; color:var(--mid)}
 .f-soc:hover{color:var(--mid); border-color:var(--mid)}
 
 @media (max-width:760px) {
-  .f-pay{flex-direction:column; align-items:flex-start; gap:10px; padding:14px 0}
+  .f-pay{gap:10px; padding:14px 0}
   .pay-badge{width:52px; height:32px; padding:7px}
 }
 
@@ -521,14 +528,33 @@ body.cinema-mode footer{background:transparent}
   .hero .ed-lead,.hero .ed-cta,.hero .ed-stats{opacity:1!important; transform:none!important}
 }
 
+/* ---- Hero slideshow ---- */
+.hero-slides{position:absolute; inset:0; z-index:0; overflow:hidden; background:#0a0c10}
+.hero-slides img{position:absolute; inset:0; width:100%; height:100%;
+  opacity:0; transform:scale(1.06);
+  transition:opacity 1.4s cubic-bezier(.2,.8,.2,1), transform 7s linear}
+.hero-slides img.on{opacity:1; transform:scale(1)}
+.hero-scrim{position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,12,16,.62) 0%, rgba(70,29,54,.30) 45%, rgba(10,12,16,.78) 100%)}
+.hero .wrap{position:relative; z-index:2}
+.hero-dots{position:absolute; bottom:52px; inset-inline:0; z-index:2; display:flex; justify-content:center; gap:8px}
+.hero-dots button{width:22px; height:4px; border-radius:999px; background:rgba(243,236,224,.28); transition:.3s}
+.hero-dots button.on{background:var(--c-amber); width:34px}
+@media (prefers-reduced-motion: reduce){
+  .hero-slides img{transition:none!important; transform:none!important}
+}
+
 .chaps{display:grid; gap:24px; margin-top:40px}
 .chap{position:sticky; top:calc(var(--headH) + 16px + var(--i,0) * 12px);
   display:grid; gap:24px; align-content:center; min-height:min(70vh,560px)}
-@media(min-width:900px){ .chap{grid-template-columns:1.1fr .9fr; align-items:center} }
+@media(min-width:900px){ .chap{grid-template-columns:.9fr 1.1fr; align-items:center} }
 @media(max-width:760px){ .chap{min-height:auto; padding-block:30px} }
 @media(max-width:480px){ .chap{gap:16px} }
 .chap .chap-body{display:flex; flex-direction:column; align-items:flex-end; text-align:right}
-.chap .ed-num{margin-bottom:6px}
+.chap .chap-head{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+.chap .chap-head h3{margin:0}
+.chap .ed-num{font-size:clamp(1.3rem,3.8vw,2.1rem); -webkit-text-stroke:1px rgba(243,236,224,.45);
+  text-stroke:1px rgba(243,236,224,.45)}
 .chap h3{font-family:var(--f-display); font-weight:800; line-height:1.15;
   font-size:clamp(1.5rem,4.5vw,2.4rem); color:#fff; margin:0 0 12px; text-shadow:0 2px 24px rgba(0,0,0,.6)}
 .chap p{color:#c5cad6; max-width:52ch; margin:0 0 4px}

@@ -3,11 +3,11 @@ export function About() {
     <section id="about">
       <div className="wrap about-grid">
         <div className="reveal cinema-head" style={{ alignItems: "flex-start", textAlign: "right" }}>
-          <span className="ed-eyebrow">لماذا تولكان؟</span>
+          <span className="ed-eyebrow">لماذا TOOLCAN ؟</span>
           <h2 className="title">
             نحن لا نزيّن المكان…
             <br />
-            نحن نبني تولكان
+            نحن نصنع لحظات تروى
           </h2>
           <hr className="ed-rule" style={{ marginInline: "0" }} />
           <p className="sub" style={{ marginTop: 14, color: "var(--c-mist)" }}>

@@ -125,30 +125,20 @@ export function Footer() {
             <Logo size="lg" tone="light" />
           </a>
           <p style={{ opacity: 0.85, fontSize: ".9rem", marginTop: 12, maxWidth: "36ch", color: "inherit" }}>
-            مؤسسة متخصصة لتنسيق الحفلات والمناسبات — نحول التفاصيل إلى ذكريات.
+            شركة متخصصة لتنسيق الحفلات والمناسبات — نحول التفاصيل إلى ذكريات.
           </p>
           <a className="wa" href="https://wa.me/966583131400" style={{ marginTop: 16 }}>
             💬 واتساب مباشر
           </a>
         </div>
 
-        {/* Col 2 — Quick links */}
-        <div>
-          <h4>روابط سريعة</h4>
-          <a href="#services">تنسيق ورد</a>
-          <a href="#services">كوش أفراح</a>
-          <a href="#services">حفلات تخرج</a>
-          <a href="#services">أعياد ميلاد</a>
-          <a href="#services">ولائم</a>
-          <a href="/complaints" className="f-complaints">الشكاوي والاقتراحات</a>
-        </div>
-
-        {/* Col 3 — Contact + Trust */}
+        {/* Col 2 — Contact + Trust */}
         <div>
           <h4>تواصل</h4>
           <a href="tel:+966583131400"><span dir="ltr">0583 131 400</span></a>
           <a href="mailto:toolcan.events@gmail.com"><span dir="ltr">toolcan.events@gmail.com</span></a>
           <a href="#">الرياض — المملكة العربية السعودية</a>
+          <a href="/complaints" className="f-complaints">الشكاوي والاقتراحات</a>
 
           {/* Trust section */}
           <div className="f-trust-card">

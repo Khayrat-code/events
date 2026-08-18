@@ -6,6 +6,14 @@ import { services } from "@/lib/data"
 
 const MUSICIANS = ["كمنجة", "بيانو", "عود", "ما يحتاجه الموقع"]
 
+const BUDGETS = [
+  "أقل من 5,000 ريال",
+  "5,000 – 10,000 ريال",
+  "10,000 – 25,000 ريال",
+  "25,000 – 50,000 ريال",
+  "أكثر من 50,000 ريال",
+]
+
 export function Book() {
   const [show, setShow] = useState(false)
   const [error, setError] = useState("")
@@ -24,6 +32,7 @@ export function Book() {
       service: String(fd.get("service") || ""),
       musician: String(fd.get("musician") || ""),
       event_date: String(fd.get("event_date") || "") || null,
+      budget: String(fd.get("budget") || "") || null,
       message: String(fd.get("message") || "أرغب بحجز موعد"),
     }
     const { error: insErr } = await createClient()
@@ -78,7 +87,16 @@ export function Book() {
                   <option key={m} value={m}>{m}</option>
                 ))}
               </select>
-              <input type="date" name="event_date" required />
+              <div className="fld">
+                <span className="fld-label">تاريخ المناسبة</span>
+                <input type="date" name="event_date" required />
+              </div>
+              <select name="budget" defaultValue="">
+                <option value="" disabled>الميزانية التقريبية</option>
+                {BUDGETS.map((b) => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
+              </select>
               <textarea
                 name="message"
                 placeholder="أي تفاصيل إضافية تبي نعرفها؟"
@@ -105,6 +123,15 @@ export function Book() {
                 {loading ? "جارٍ الإرسال…" : "أرسل طلبك"}
               </button>
             </form>
+            <div className="expect">
+              <b>ما الذي يمكن توقعه:</b>
+              <ul>
+                <li>سيتم الرد شخصيا من قبل فريقنا في غضون 48 ساعة.</li>
+                <li>محادثة، وليست مكالمة مبيعات.</li>
+                <li>سرية تامة وتكتم كامل.</li>
+                <li>لا يوجد التزام بالمتابعة.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

@@ -5,7 +5,6 @@ import { About } from "@/components/About"
 import { Services } from "@/components/Services"
 import { Steps } from "@/components/Steps"
 import { Musicians } from "@/components/Musicians"
-import { Voices } from "@/components/Voices"
 import { Book } from "@/components/Book"
 import { Afterlight } from "@/components/Afterlight"
 import { Footer } from "@/components/Footer"
@@ -35,7 +34,6 @@ export default function Page() {
         <Services />
         <Musicians />
         <Steps />
-        <Voices />
         <Book />
         <Afterlight />
       </main>

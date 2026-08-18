@@ -70,8 +70,10 @@ export function Services() {
               style={{ ["--i" as string]: i, ["--d" as string]: `${i * 0.05}s` }}
             >
               <div className="chap-body">
-                <span className="ed-num">{toAr(s.num)}</span>
-                <h3>{s.title}</h3>
+                <div className="chap-head">
+                  <span className="ed-num">{toAr(s.num)}</span>
+                  <h3>{s.title}</h3>
+                </div>
                 <p>{s.description}</p>
                 <div className="tags">
                   {s.tags.map((t) => (

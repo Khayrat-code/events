@@ -6,10 +6,7 @@ export function Marquee() {
     <div className="marquee" aria-hidden="true">
       <div className="mq-track">
         {items.map((item, i) => (
-          <span key={i}>
-            {item}
-            <i>✦</i>
-          </span>
+          <span key={i}>{item}</span>
         ))}
       </div>
     </div>

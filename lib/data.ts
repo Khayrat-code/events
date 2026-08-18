@@ -157,6 +157,5 @@ export const VOICES = [
 export const NAV_LINKS = [
   { href: "#services", label: "تخصصاتنا" },
   { href: "#musicians", label: "عازفينا" },
-  { href: "#steps",    label: "طريقتنا" },
-  { href: "#voices",   label: "آراء العملاء" },
+  { href: "#steps",    label: "خطوات العمل معنا" },
 ]

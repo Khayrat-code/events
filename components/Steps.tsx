@@ -10,7 +10,7 @@ export function Steps() {
     <section id="steps">
       <div className="wrap">
         <div className="cinema-head reveal">
-          <span className="ed-eyebrow">طريقتنا</span>
+          <span className="ed-eyebrow">خطوات العمل معنا</span>
           <h2 className="title">أربع خطوات… وتقام الحفلة</h2>
           <hr className="ed-rule" />
         </div>
