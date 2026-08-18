@@ -3,21 +3,6 @@ import type { Dictionary, Locale } from "@/lib/i18n"
 
 /* ============ Inline SVG brand/trust icons ============ */
 
-function CRIcon({ size = 36 }: { size?: number }) {
-  return (
-    <span className="trust-badge" style={{ width: size, height: size, borderRadius: 8, background: "rgba(245, 241, 234, 0.08)", border: "1px solid rgba(245, 241, 234, 0.18)" }}>
-      <svg viewBox="0 0 24 24" width={size * 0.56} height={size * 0.56} fill="none">
-        <rect x="4" y="2.5" width="16" height="19" rx="1.5" fill="#F5F1EA" />
-        <rect x="6.5" y="6" width="11" height="1.6" fill="#B8835A" />
-        <rect x="6.5" y="9.4" width="11" height="1" fill="#421D36" />
-        <rect x="6.5" y="12.4" width="7.5" height="1" fill="#8E8E8E" />
-        <rect x="6.5" y="15.4" width="9" height="1" fill="#8E8E8E" />
-        <circle cx="15.5" cy="18.8" r="1.6" fill="#B8835A" />
-      </svg>
-    </span>
-  )
-}
-
 function BankIcon({ size = 16 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -131,37 +116,29 @@ export function Footer({ dict, lang }: FooterProps) {
           <a href="mailto:toolcan.events@gmail.com"><span dir="ltr">toolcan.events@gmail.com</span></a>
           <a href="#">{dict.address}</a>
           <a href={`/${lang}/complaints`} className="f-complaints">{dict.complaints}</a>
-
-          {/* Trust section */}
-          <div className="f-trust-card">
-            <img
-              src="/trust/business-verified.png"
-              alt={dict.verifiedLabel}
-              style={{ width: 46, height: 46, borderRadius: 12, objectFit: "cover", flexShrink: 0 }}
-            />
-            <div className="f-trust-text">
-              <span className="f-trust-main">{dict.verifiedLabel}</span>
-            </div>
-          </div>
-
-          {/* VAT */}
-          <div className="f-trust-card" style={{ marginTop: 12 }}>
-            <img
-              src="/trust/vat-badge.png"
-              alt={dict.vatLabel}
-              style={{ width: 38, height: 46, borderRadius: 8, objectFit: "cover", flexShrink: 0 }}
-            />
-            <div className="f-trust-text">
-              <span className="f-trust-sub">{dict.vatLabel}</span>
-              <span className="f-trust-main"><span dir="ltr" className="f-cr-num">{dict.vatNumber}</span></span>
-            </div>
-          </div>
-
-          <div className="f-cr">
-            <CRIcon size={36} />
-            <span>{dict.crLabel} <span dir="ltr" className="f-cr-num">7054962811</span></span>
-          </div>
         </div>
+      </div>
+
+      {/* Trust strip — verified + CR + VAT in one line */}
+      <div className="f-trust-strip">
+        <span className="f-trust-item">
+          <img src="/trust/business-verified.png" alt={dict.verifiedLabel} loading="lazy" />
+          <span className="f-trust-txt"><b>{dict.verifiedLabel}</b></span>
+        </span>
+        <span className="f-trust-item">
+          <img src="/trust/cr-badge.png" alt={dict.crLabel} loading="lazy" />
+          <span className="f-trust-txt">
+            <small>{dict.crLabel}</small>
+            <b dir="ltr">7054962811</b>
+          </span>
+        </span>
+        <span className="f-trust-item">
+          <img src="/trust/vat-badge.png" alt={dict.vatLabel} loading="lazy" />
+          <span className="f-trust-txt">
+            <small>{dict.vatLabel}</small>
+            <b dir="ltr">{dict.vatNumber}</b>
+          </span>
+        </span>
       </div>
 
       {/* Payments row */}

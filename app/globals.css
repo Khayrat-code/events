@@ -350,6 +350,17 @@ footer a:hover{opacity:1; color:var(--mid)}
 .f-cr-num{color:rgba(255,255,255,.85)}
 .f-complaints{color:var(--mid)!important; font-weight:800}
 
+/* ---- Trust strip (verified + CR + VAT, one line) ---- */
+.f-trust-strip{display:flex; align-items:center; justify-content:center; gap:clamp(20px,5vw,48px);
+  flex-wrap:wrap; padding:18px 0; max-width:1150px; margin-inline:auto;
+  border-top:1px solid rgba(255,255,255,.12)}
+.f-trust-item{display:inline-flex; align-items:center; gap:10px}
+.f-trust-item img{width:34px; height:34px; object-fit:contain; border-radius:8px;
+  background:#fff; padding:2px; flex-shrink:0}
+.f-trust-txt{display:flex; flex-direction:column; line-height:1.35}
+.f-trust-txt small{font-size:11px; color:rgba(255,255,255,.55)}
+.f-trust-txt b{font-size:13px; color:rgba(255,255,255,.92); font-weight:700}
+
 /* ---- Payments ---- */
 .f-pay{display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:20px 0; max-width:1150px; margin-inline:auto;
   border-top:1px solid rgba(255,255,255,.12)}
