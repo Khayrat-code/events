@@ -29,15 +29,15 @@ export default function AdminDashboardPage() {
 
   return (
     <div style={{ background: "var(--mist)", minHeight: "100vh" }}>
-      <header style={{ background: "var(--deep)", color: "var(--txt-on-d)", padding: "14px 32px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-        <div style={{ fontFamily: "'Changa', sans-serif", fontSize: 20, fontWeight: 800 }}>لوحة التحكم</div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <a href="/" className="btn" style={{ background: "transparent", color: "var(--lav)", border: "1px solid rgba(255,255,255,.25)", padding: "9px 16px", fontSize: 13, textDecoration: "none" }}>الموقع</a>
-          <button className="btn" style={{ background: "rgba(176,80,80,.16)", color: "#E4A5A5", border: "1px solid rgba(176,80,80,.5)", padding: "9px 16px", fontSize: 13 }} onClick={async () => { await createClient().auth.signOut(); router.replace("/admin/login") }}>تسجيل خروج</button>
+      <header style={{ background: "var(--deep)", color: "var(--txt-on-d)", padding: "18px clamp(16px,4vw,32px)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14, boxShadow: "0 2px 20px rgba(0,0,0,.25)" }}>
+        <div style={{ fontFamily: "'Tajawal', sans-serif", fontSize: 22, fontWeight: 800 }}>لوحة التحكم</div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <a href="/" className="btn" style={{ background: "transparent", color: "var(--lav)", border: "1px solid rgba(255,255,255,.25)", padding: "10px 18px", fontSize: 14, textDecoration: "none", borderRadius: 10 }}>الموقع</a>
+          <button className="btn" style={{ background: "rgba(176,80,80,.16)", color: "#E4A5A5", border: "1px solid rgba(176,80,80,.5)", padding: "10px 18px", fontSize: 14, borderRadius: 10 }} onClick={async () => { await createClient().auth.signOut(); router.replace("/admin/login") }}>تسجيل خروج</button>
         </div>
       </header>
 
-      <div style={{ padding: "24px 32px 0", display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div style={{ padding: "24px clamp(16px,4vw,32px) 0", display: "flex", gap: 8, flexWrap: "wrap" }}>
         {tabs.map((t) => (
           <button key={t.key} onClick={() => setTab(t.key)} style={{ padding: "10px 18px", borderRadius: 12, border: tab === t.key ? "1px solid var(--brand)" : "1px solid var(--lav2)", background: tab === t.key ? "var(--brand)" : "var(--paper)", color: tab === t.key ? "#fff" : "var(--ink)", fontFamily: "inherit", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
             {t.label}
@@ -45,7 +45,7 @@ export default function AdminDashboardPage() {
         ))}
       </div>
 
-      <section style={{ padding: "28px 32px 96px" }}>
+      <section style={{ padding: "28px clamp(16px,4vw,32px) 96px" }}>
         {tab === "messages" && <MessagesPanel />}
         {tab === "gallery" && <GalleryPanel />}
         {tab === "analytics" && <AnalyticsPanel />}
@@ -295,7 +295,7 @@ function AnalyticsPanel() {
 function Kpi({ label, value }: { label: string; value: number }) {
   return (
     <div style={{ background: "var(--paper)", border: "1px solid var(--lav2)", borderRadius: "var(--r)", padding: 20, boxShadow: "var(--sh)" }}>
-      <div style={{ fontFamily: "'Changa', sans-serif", fontSize: 32, fontWeight: 800, color: "var(--brand)", lineHeight: 1 }}>{value}</div>
+      <div style={{ fontFamily: "'Tajawal', sans-serif", fontSize: 32, fontWeight: 800, color: "var(--brand)", lineHeight: 1 }}>{value}</div>
       <div style={{ marginTop: 6, fontSize: 12, color: "#7c5a72", fontWeight: 700 }}>{label}</div>
     </div>
   )

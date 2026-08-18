@@ -26,7 +26,7 @@ export default function AdminLoginPage() {
     <section style={{ minHeight: "100vh", display: "grid", placeItems: "center", background: "var(--mist)", padding: "20px" }}>
       <div style={{ width: "100%", maxWidth: 420 }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontFamily: "'Changa', sans-serif", fontSize: 28, fontWeight: 800, color: "var(--deep)" }}>لوحة التحكم</div>
+          <div style={{ fontFamily: "'Tajawal', sans-serif", fontSize: 28, fontWeight: 800, color: "var(--deep)" }}>لوحة التحكم</div>
           <p style={{ color: "#7c5a72", fontSize: 14, marginTop: 6 }}>تسجيل الدخول للمسؤولين</p>
         </div>
         <form onSubmit={onSubmit} noValidate style={{ background: "var(--paper)", border: "1px solid var(--lav2)", borderRadius: "var(--r)", padding: 28, boxShadow: "var(--sh)" }}>
