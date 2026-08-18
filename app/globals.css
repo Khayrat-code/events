@@ -269,9 +269,7 @@ h2.title{font-size:clamp(1.6rem,5vw,2.6rem); font-weight:800; color:var(--deep)}
 
 /* ============ الخطوات ============ */
 .steps{margin-top:44px; position:relative; display:grid; gap:34px}
-.steps::before{content:''; position:absolute; top:8px; bottom:8px; inset-inline-start:23px; width:3px; border-radius:3px;
-  background:linear-gradient(var(--mid),var(--brand)); transform:scaleY(0); transform-origin:top; transition:transform 1.4s ease}
-.steps.in::before{transform:scaleY(1)}
+.steps::before{display:none}
 .step{display:flex; gap:20px; align-items:flex-start}
 .step .n{flex:0 0 48px; height:48px; border-radius:50%; display:grid; place-items:center;
   background:var(--paper); border:3px solid var(--brand); color:var(--brand);

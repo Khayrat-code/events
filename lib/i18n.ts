@@ -21,7 +21,7 @@ const ar = {
     switchTo: "EN",
   },
   hero: {
-    eyebrow: "٠٠ — المدخل",
+    eyebrow: "TOOLCAN EVENTS",
     words: ["نحوّلُ", "مناسبتكَ", "إلى", "حكايةٍ", "تُروى"],
     lead:
       "من أول وردةٍ في الممرّ إلى آخر إضاءةٍ في القاعة: تنسيق ورد، كوش، أعراس، تخرّج، أعياد ميلاد وولائم — بتفاصيل فنية تليق بذوقك.",
@@ -233,7 +233,7 @@ const en: typeof ar = {
     switchTo: "عربي",
   },
   hero: {
-    eyebrow: "00 — The Entrance",
+    eyebrow: "TOOLCAN EVENTS",
     words: ["We turn", "your occasion", "into a", "story", "worth telling"],
     lead:
       "From the first rose in the aisle to the last light in the hall: flower styling, wedding stages, graduations, birthdays and banquets — artistic details worthy of your taste.",
