@@ -19,9 +19,9 @@ export function Musicians({ dict }: { dict: Dictionary["musicians"] }) {
                 <Image
                   src={m.img}
                   alt={m.name}
-                  width={300}
-                  height={300}
-                  style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  fill
+                  sizes="240px"
+                  style={{ objectFit: "contain" }}
                 />
               </div>
               <h3>{m.name}</h3>

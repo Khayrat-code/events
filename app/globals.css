@@ -811,8 +811,8 @@ body.cinema-mode .cinema-head h2{color:#fff; text-shadow:0 2px 24px rgba(0,0,0,.
 .music-grid{display:grid; gap:22px; margin-top:40px}
 @media(min-width:680px){ .music-grid{grid-template-columns:repeat(3,1fr)} }
 .music-card{text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px}
-.music-card .music-img{width:100%; max-width:240px; display:grid; place-items:center}
-.music-card .music-img img{filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+.music-card .music-img{width:100%; max-width:240px; aspect-ratio:2/3; display:grid; place-items:center; overflow:hidden}
+.music-card .music-img img{width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
 .music-card h3{font-family:var(--f-display); font-weight:800; font-size:clamp(1.3rem,3.5vw,1.8rem); color:#fff}
 .music-card p{color:#c5cad6; font-size:.9rem; max-width:30ch}
 
