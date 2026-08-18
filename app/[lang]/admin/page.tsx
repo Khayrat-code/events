@@ -29,13 +29,13 @@ export default function AdminDashboardPage() {
 
   return (
     <div style={{ background: "var(--mist)", minHeight: "100vh" }}>
-      <header style={{ background: "var(--deep)", color: "var(--txt-on-d)", padding: "18px clamp(16px,4vw,32px)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14, boxShadow: "0 2px 20px rgba(0,0,0,.25)" }}>
+      <div style={{ background: "var(--deep)", color: "var(--txt-on-d)", padding: "18px clamp(16px,4vw,32px)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14, boxShadow: "0 2px 20px rgba(0,0,0,.25)", position: "relative", zIndex: 1 }}>
         <div style={{ fontFamily: "'Tajawal', sans-serif", fontSize: 22, fontWeight: 800 }}>لوحة التحكم</div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <a href="/" className="btn" style={{ background: "transparent", color: "var(--lav)", border: "1px solid rgba(255,255,255,.25)", padding: "10px 18px", fontSize: 14, textDecoration: "none", borderRadius: 10 }}>الموقع</a>
           <button className="btn" style={{ background: "rgba(176,80,80,.16)", color: "#E4A5A5", border: "1px solid rgba(176,80,80,.5)", padding: "10px 18px", fontSize: 14, borderRadius: 10 }} onClick={async () => { await createClient().auth.signOut(); router.replace("/admin/login") }}>تسجيل خروج</button>
         </div>
-      </header>
+      </div>
 
       <div style={{ padding: "24px clamp(16px,4vw,32px) 0", display: "flex", gap: 8, flexWrap: "wrap" }}>
         {tabs.map((t) => (
