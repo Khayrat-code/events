@@ -540,7 +540,7 @@ body.cinema-mode footer{background:transparent}
 @media(min-width:900px){ .chap{grid-template-columns:.9fr 1.1fr; align-items:center} }
 @media(max-width:760px){ .chap{min-height:auto; padding-block:30px} }
 @media(max-width:480px){ .chap{gap:16px} }
-.chap .chap-body{display:flex; flex-direction:column; align-items:flex-end; text-align:right}
+.chap .chap-body{display:flex; flex-direction:column; align-items:flex-start; text-align:start}
 .chap .chap-head{display:flex; align-items:center; gap:12px; margin-bottom:12px}
 .chap .chap-head h3{margin:0}
 .chap .ed-num{font-size:clamp(1.3rem,3.8vw,2.1rem); -webkit-text-stroke:1px rgba(243,236,224,.45);
@@ -548,7 +548,7 @@ body.cinema-mode footer{background:transparent}
 .chap h3{font-family:var(--f-display); font-weight:800; line-height:1.15;
   font-size:clamp(1.5rem,4.5vw,2.4rem); color:#fff; margin:0 0 12px; text-shadow:0 2px 24px rgba(0,0,0,.6)}
 .chap p{color:#c5cad6; max-width:52ch; margin:0 0 4px}
-.chap .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; justify-content:flex-end}
+.chap .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; justify-content:flex-start}
 .chap .tags span{padding:6px 14px; border-radius:999px; font-size:.74rem; font-weight:700;
   background:rgba(243,236,224,.08); border:1px solid rgba(243,236,224,.2); color:#fff}
 .chap .plate{position:relative; width:100%; aspect-ratio:4/3; border-radius:14px; overflow:hidden;
