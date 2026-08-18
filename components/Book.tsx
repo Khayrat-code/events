@@ -3,10 +3,12 @@
 import { useState } from "react"
 import { createClient, TABLES } from "@/lib/supabase/client"
 import { services } from "@/lib/data"
+import type { Dictionary, Locale } from "@/lib/i18n"
 
-const MUSICIANS = ["كمنجة", "بيانو", "عود", "ما يحتاجه الموقع"]
-
-const BUDGETS = [
+/* Canonical Arabic values stored in the DB regardless of page language,
+   so the admin dashboard stays consistent. */
+const MUSICIAN_VALUES = ["كمنجة", "بيانو", "عود", "ما يحتاجه الموقع"]
+const BUDGET_VALUES = [
   "أقل من 5,000 ريال",
   "5,000 – 10,000 ريال",
   "10,000 – 25,000 ريال",
@@ -14,7 +16,12 @@ const BUDGETS = [
   "أكثر من 50,000 ريال",
 ]
 
-export function Book() {
+interface BookProps {
+  dict: Dictionary["book"]
+  lang: Locale
+}
+
+export function Book({ dict, lang }: BookProps) {
   const [show, setShow] = useState(false)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -33,14 +40,14 @@ export function Book() {
       musician: String(fd.get("musician") || ""),
       event_date: String(fd.get("event_date") || "") || null,
       budget: String(fd.get("budget") || "") || null,
-      message: String(fd.get("message") || "أرغب بحجز موعد"),
+      message: String(fd.get("message") || dict.defaultMessage),
     }
     const { error: insErr } = await createClient()
       .from(TABLES.contact)
       .insert(payload)
     setLoading(false)
     if (insErr) {
-      setError("صار خطأ بالإرسال، جرب مرة ثانية")
+      setError(dict.error)
       return
     }
     form.reset()
@@ -53,10 +60,10 @@ export function Book() {
       <section id="book">
         <div className="wrap">
           <div className="card reveal ed-panel">
-            <span className="overline">خلّينا نبدأ الحكاية</span>
-            <h2 className="title">تاريخك محجوز للفرح</h2>
+            <span className="overline">{dict.overline}</span>
+            <h2 className="title">{dict.title}</h2>
             <p className="sub" style={{ marginBottom: 20 }}>
-              املأ بياناتك وراح يوصلنا مباشرة، ونتواصل معك بأسرع وقت
+              {dict.sub}
             </p>
             {error && (
               <div style={{
@@ -72,34 +79,34 @@ export function Book() {
               </div>
             )}
             <form onSubmit={onSubmit}>
-              <input type="text" name="name" placeholder="الاسم" required />
-              <input type="email" name="email" placeholder="الإيميل" required />
-              <input type="tel" name="phone" placeholder="رقم الجوال" required />
+              <input type="text" name="name" placeholder={dict.namePh} required />
+              <input type="email" name="email" placeholder={dict.emailPh} required />
+              <input type="tel" name="phone" placeholder={dict.phonePh} required />
               <select name="service" required defaultValue="">
-                <option value="" disabled>نوع المناسبة</option>
+                <option value="" disabled>{dict.typePh}</option>
                 {services.map((s) => (
-                  <option key={s.num} value={s.title}>{s.title}</option>
+                  <option key={s.num} value={s.title}>{lang === "en" ? s.titleEn : s.title}</option>
                 ))}
               </select>
               <select name="musician" defaultValue="">
-                <option value="" disabled>تحب عازف معين؟</option>
-                {MUSICIANS.map((m) => (
-                  <option key={m} value={m}>{m}</option>
+                <option value="" disabled>{dict.musicianPh}</option>
+                {dict.musiciansList.map((m, i) => (
+                  <option key={m} value={MUSICIAN_VALUES[i]}>{m}</option>
                 ))}
               </select>
               <div className="fld">
-                <span className="fld-label">تاريخ المناسبة</span>
+                <span className="fld-label">{dict.dateLabel}</span>
                 <input type="date" name="event_date" required />
               </div>
               <select name="budget" defaultValue="">
-                <option value="" disabled>الميزانية التقريبية</option>
-                {BUDGETS.map((b) => (
-                  <option key={b} value={b}>{b}</option>
+                <option value="" disabled>{dict.budgetPh}</option>
+                {dict.budgets.map((b, i) => (
+                  <option key={b} value={BUDGET_VALUES[i]}>{b}</option>
                 ))}
               </select>
               <textarea
                 name="message"
-                placeholder="أي تفاصيل إضافية تبي نعرفها؟"
+                placeholder={dict.messagePh}
                 style={{
                   gridColumn: "1 / -1",
                   minHeight: 80,
@@ -120,23 +127,22 @@ export function Book() {
                 disabled={loading}
                 style={{ justifyContent: "center", gridColumn: "1 / -1" }}
               >
-                {loading ? "جارٍ الإرسال…" : "أرسل طلبك"}
+                {loading ? dict.sending : dict.submit}
               </button>
             </form>
             <div className="expect">
-              <b>ما الذي يمكن توقعه:</b>
+              <b>{dict.expect.title}</b>
               <ul>
-                <li>سيتم الرد شخصيا من قبل فريقنا في غضون 48 ساعة.</li>
-                <li>محادثة، وليست مكالمة مبيعات.</li>
-                <li>سرية تامة وتكتم كامل.</li>
-                <li>لا يوجد التزام بالمتابعة.</li>
+                {dict.expect.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
       </section>
       <div id="toast" className={show ? "show" : ""}>
-        وصلتنا طلبك — راح نتواصل معك قريب
+        {dict.toast}
       </div>
     </>
   )

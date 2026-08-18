@@ -1,22 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import { useReducedMotion } from "@/hooks/useReducedMotion"
+import { useEffect } from "react"
+import type { Dictionary } from "@/lib/i18n"
 
-const WORDS = ["نحوّلُ", "مناسبتكَ", "إلى", "حكايةٍ", "تُروى"]
+interface HeroProps {
+  dict: Dictionary["hero"]
+}
 
-const SLIDES = [
-  { src: "/hero/24.jpg", pos: "center 20%" },
-  { src: "/hero/22.jpg", pos: "center 35%" },
-  { src: "/hero/23.jpg", pos: "center 30%" },
-  { src: "/hero/21.jpg", pos: "center 40%" },
-]
-
-export function Hero() {
-  const reduced = useReducedMotion()
-  const [idx, setIdx] = useState(0)
-
+export function Hero({ dict }: HeroProps) {
   useEffect(() => {
     const t = setTimeout(
       () => document.querySelector(".hero")?.classList.add("in"),
@@ -25,45 +16,12 @@ export function Hero() {
     return () => clearTimeout(t)
   }, [])
 
-  useEffect(() => {
-    if (reduced) return
-    const iv = setInterval(() => {
-      if (!document.hidden) setIdx((i) => (i + 1) % SLIDES.length)
-    }, 5500)
-    return () => clearInterval(iv)
-  }, [reduced])
-
   return (
     <section className="hero ed-reveal" id="top">
-      <div className="hero-slides" aria-hidden="true">
-        {SLIDES.map((s, i) => (
-          <Image
-            key={s.src}
-            src={s.src}
-            alt=""
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className={i === idx ? "on" : ""}
-            style={{ objectFit: "cover", objectPosition: s.pos }}
-          />
-        ))}
-        <div className="hero-scrim" />
-      </div>
-      <div className="hero-dots">
-        {SLIDES.map((s, i) => (
-          <button
-            key={s.src}
-            className={i === idx ? "on" : ""}
-            onClick={() => setIdx(i)}
-            aria-label={`الصورة ${i + 1}`}
-          />
-        ))}
-      </div>
       <div className="wrap" style={{ maxWidth: 920 }}>
-        <span className="ed-eyebrow">٠٠ — المدخل</span>
+        <span className="ed-eyebrow">{dict.eyebrow}</span>
         <h1 className="ed-title">
-          {WORDS.map((w, i) => (
+          {dict.words.map((w, i) => (
             <span className="ed-word" key={i}>
               <span style={{ ["--d" as string]: `${0.1 + i * 0.12}s` }}>
                 {w}
@@ -73,12 +31,11 @@ export function Hero() {
         </h1>
         <hr className="ed-rule" />
         <p className="ed-lead ed-kicker" style={{ maxWidth: "52ch" }}>
-          من أول وردةٍ في الممرّ إلى آخر إضاءةٍ في القاعة: تنسيق ورد، كوش، أعراس،
-          تخرّج، أعياد ميلاد وولائم — بتفاصيل فنية تليق بذوقك.
+          {dict.lead}
         </p>
         <div className="ed-cta hero-cta">
           <a className="btn primary" href="#book">
-            ابدأ حكايتك
+            {dict.cta}
           </a>
         </div>
         <div className="ed-stats">
@@ -89,7 +46,7 @@ export function Hero() {
               </span>
               <span className="s">+</span>
             </b>
-            <span className="ed-kicker">مناسبة منسّقة</span>
+            <span className="ed-kicker">{dict.stats[0].label}</span>
           </div>
           <div>
             <b>
@@ -97,7 +54,7 @@ export function Hero() {
                 0
               </span>
             </b>
-            <span className="ed-kicker">تخصصات تنسيق</span>
+            <span className="ed-kicker">{dict.stats[1].label}</span>
           </div>
           <div>
             <b>
@@ -105,7 +62,7 @@ export function Hero() {
                 0
               </span>
             </b>
-            <span className="ed-kicker">سنوات من الشغف</span>
+            <span className="ed-kicker">{dict.stats[2].label}</span>
           </div>
         </div>
       </div>

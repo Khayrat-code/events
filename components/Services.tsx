@@ -3,15 +3,22 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { services } from "@/lib/data"
+import type { Dictionary, Locale } from "@/lib/i18n"
 
 const AR = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"]
 const toAr = (s: string) => s.replace(/[0-9]/g, (d) => AR[+d])
 
-export function Services() {
+interface ServicesProps {
+  dict: Dictionary["services"]
+  lang: Locale
+}
+
+export function Services({ dict, lang }: ServicesProps) {
   const [active, setActive] = useState(0)
   const [fgEmoji, setFgEmoji] = useState(services[0].emoji)
   const [fgSwap, setFgSwap] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const isAr = lang === "ar"
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".chap"))
@@ -55,9 +62,9 @@ export function Services() {
     <section id="services" ref={sectionRef} style={{ paddingTop: 20 }}>
       <div className="wrap">
         <div className="cinema-head reveal">
-          <span className="ed-eyebrow">تخصصاتنا الثمانية</span>
+          <span className="ed-eyebrow">{dict.eyebrow}</span>
           <h2 className="title" style={{ textAlign: "center", fontSize: "clamp(1.6rem,5vw,2.6rem)" }}>
-            مرّر لتشاهد الفصول تتراكب
+            {dict.title}
           </h2>
           <hr className="ed-rule" />
         </div>
@@ -71,19 +78,19 @@ export function Services() {
             >
               <div className="chap-body">
                 <div className="chap-head">
-                  <span className="ed-num">{toAr(s.num)}</span>
-                  <h3>{s.title}</h3>
+                  <span className="ed-num">{isAr ? toAr(s.num) : s.num}</span>
+                  <h3>{isAr ? s.title : s.titleEn}</h3>
                 </div>
-                <p>{s.description}</p>
+                <p>{isAr ? s.description : s.descriptionEn}</p>
                 <div className="tags">
-                  {s.tags.map((t) => (
+                  {(isAr ? s.tags : s.tagsEn).map((t) => (
                     <span key={t}>{t}</span>
                   ))}
                 </div>
               </div>
               <div className="plate">
                 {s.image ? (
-                  <Image src={s.image} alt={s.title} fill style={{ objectFit: "cover" }} />
+                  <Image src={s.image} alt={isAr ? s.title : s.titleEn} fill style={{ objectFit: "cover" }} />
                 ) : (
                   <span style={{ fontSize: "8rem" }}>{s.emoji}</span>
                 )}

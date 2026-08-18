@@ -534,22 +534,6 @@ body.cinema-mode footer{background:transparent}
   .hero .ed-lead,.hero .ed-cta,.hero .ed-stats{opacity:1!important; transform:none!important}
 }
 
-/* ---- Hero slideshow ---- */
-.hero-slides{position:absolute; inset:0; z-index:0; overflow:hidden; background:#0a0c10}
-.hero-slides img{position:absolute; inset:0; width:100%; height:100%;
-  opacity:0; transform:scale(1.06);
-  transition:opacity 1.4s cubic-bezier(.2,.8,.2,1), transform 7s linear}
-.hero-slides img.on{opacity:1; transform:scale(1)}
-.hero-scrim{position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(10,12,16,.62) 0%, rgba(70,29,54,.30) 45%, rgba(10,12,16,.78) 100%)}
-.hero .wrap{position:relative; z-index:2}
-.hero-dots{position:absolute; bottom:52px; inset-inline:0; z-index:2; display:flex; justify-content:center; gap:8px}
-.hero-dots button{width:22px; height:4px; border-radius:999px; background:rgba(243,236,224,.28); transition:.3s}
-.hero-dots button.on{background:var(--c-amber); width:34px}
-@media (prefers-reduced-motion: reduce){
-  .hero-slides img{transition:none!important; transform:none!important}
-}
-
 .chaps{display:grid; gap:24px; margin-top:40px}
 .chap{position:sticky; top:calc(var(--headH) + 16px + var(--i,0) * 12px);
   display:grid; gap:24px; align-content:center; min-height:min(70vh,560px)}
@@ -909,3 +893,21 @@ body.cinema-mode .logo-mark svg text{fill:#fff!important}
 body.cinema-mode .logo-mark svg path{fill:#fff!important; stroke:#fff!important}
 body.cinema-mode #rail a{color:rgba(255,255,255,.55)!important}
 body.cinema-mode #rail a.on{color:var(--c-amber)!important}
+
+/* ---- About head (right-aligned in RTL, left in LTR) ---- */
+.about-head{align-items:flex-start; text-align:right}
+html[dir="ltr"] .about-head{text-align:left}
+
+/* ---- Language switcher ---- */
+.lang-switch{padding:8px 14px; border-radius:999px; font-weight:800; font-size:.8rem;
+  border:1px solid var(--mid); color:var(--brand); transition:.25s}
+.lang-switch:hover{background:var(--mid); color:var(--deep)}
+body.cinema-mode .lang-switch{border-color:rgba(243,236,224,.35); color:rgba(243,236,224,.72)!important}
+body.cinema-mode .lang-switch:hover{border-color:var(--c-amber); color:var(--c-amber)!important; background:none}
+
+/* ============ LTR (English) overrides ============ */
+html[dir="ltr"] .ed-title{text-align:left}
+html[dir="ltr"] .chap .chap-body{align-items:flex-start; text-align:left}
+html[dir="ltr"] .chap .tags{justify-content:flex-start}
+html[dir="ltr"] #toast{translate:-50% 0}
+html[dir="ltr"] #progress{transform-origin:left}

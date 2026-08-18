@@ -1,36 +1,19 @@
 "use client"
 
 import Image from "next/image"
+import type { Dictionary } from "@/lib/i18n"
 
-const MUSICIANS = [
-  {
-    img: "/violin.png",
-    name: "كمنجة",
-    desc: "نغمات الكمنجة تضيف لمسة راقية تكمل أجواء مناسبتك",
-  },
-  {
-    img: "/piano.png",
-    name: "بيانو",
-    desc: "ألحان البيانو تعطي لحظاتك طابعًا دافئ وأنيق",
-  },
-  {
-    img: "/oud.png",
-    name: "عود",
-    desc: "صوت العود ياخذك لأجواء عربية أصيلة تفرح القلب",
-  },
-]
-
-export function Musicians() {
+export function Musicians({ dict }: { dict: Dictionary["musicians"] }) {
   return (
     <section id="musicians">
       <div className="wrap">
         <div className="cinema-head reveal">
-          <span className="ed-eyebrow">موسيقى حية</span>
-          <h2 className="title">عازفين على مهارة وفن</h2>
+          <span className="ed-eyebrow">{dict.eyebrow}</span>
+          <h2 className="title">{dict.title}</h2>
           <hr className="ed-rule" />
         </div>
         <div className="music-grid reveal" style={{ ["--d" as string]: ".1s" }}>
-          {MUSICIANS.map((m) => (
+          {dict.items.map((m) => (
             <article key={m.name} className="music-card ed-panel">
               <div className="music-img">
                 <Image

@@ -1,11 +1,9 @@
-import { MARQUEE_ITEMS } from "@/lib/data"
-
-export function Marquee() {
-  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
+export function Marquee({ items }: { items: string[] }) {
+  const doubled = [...items, ...items]
   return (
     <div className="marquee" aria-hidden="true">
       <div className="mq-track">
-        {items.map((item, i) => (
+        {doubled.map((item, i) => (
           <span key={i}>{item}</span>
         ))}
       </div>

@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react"
 import { createClient, TABLES, BUCKETS } from "@/lib/supabase/client"
+import { getDictionary, isLocale } from "@/lib/i18n"
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024
 
@@ -16,14 +17,8 @@ interface FormState {
 
 const empty: FormState = { name: "", email: "", phone: "", type: "complaint", orderRef: "", message: "" }
 
-const typeLabels: Record<FormState["type"], string> = {
-  complaint: "شكوى",
-  suggestion: "اقتراح",
-  remark: "ملاحظة",
-  inquiry: "استفسار",
-}
-
-export default function ComplaintsPage() {
+export default function ComplaintsPage({ params }: { params: { lang: string } }) {
+  const t = getDictionary(isLocale(params.lang) ? params.lang : "ar").complaintsPage
   const [form, setForm] = useState<FormState>(empty)
   const [file, setFile] = useState<File | null>(null)
   const [submitting, setSubmitting] = useState(false)
@@ -37,15 +32,15 @@ export default function ComplaintsPage() {
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null)
     const f = e.target.files?.[0] ?? null
-    if (f && f.size > MAX_FILE_BYTES) { setError("الملف كبير جداً — الحد الأقصى 10 ميجابايت"); return }
+    if (f && f.size > MAX_FILE_BYTES) { setError(t.errFile); return }
     setFile(f)
   }
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError(null)
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) { setError("الرجاء تعبئة الحقول المطلوبة"); return }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) { setError("بريد إلكتروني غير صالح"); return }
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) { setError(t.errRequired); return }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) { setError(t.errEmail); return }
     setSubmitting(true)
 
     let attachmentUrl: string | null = null
@@ -78,45 +73,45 @@ export default function ComplaintsPage() {
     <section id="complaints" style={{ padding: "calc(var(--headH) + 30px) clamp(18px,5vw,60px) 70px" }}>
       <div className="wrap">
         <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <span className="overline">صوتك مهم</span>
-          <h2 className="title">الشكاوي والاقتراحات</h2>
+          <span className="overline">{t.overline}</span>
+          <h2 className="title">{t.title}</h2>
           <p className="sub" style={{ maxWidth: 600, margin: "12px auto 0" }}>
-            نحن نستمع — شاركنا ملاحظاتك أو شكواك أو اقتراحك وسنتعامل معها بجدية.
+            {t.sub}
           </p>
         </div>
 
         <div className="contact-card" style={{ maxWidth: 700, margin: "0 auto" }}>
           {done ? (
             <div style={{ textAlign: "center", padding: "40px 12px" }}>
-              <div style={{ fontSize: 26, fontWeight: 800, color: "#FBF3F9", marginBottom: 10 }}>تم الإرسال!</div>
-              <p style={{ color: "#D9B8D2", fontSize: 16, lineHeight: 1.9, maxWidth: 460, margin: "0 auto" }}>شكراً لمشاركتك — نأخذ كل ملاحظة على محمل الجد.</p>
-              <button className="btn ghost" onClick={() => setDone(false)} style={{ marginTop: 24 }}>إرسال رسالة أخرى</button>
+              <div style={{ fontSize: 26, fontWeight: 800, color: "#FBF3F9", marginBottom: 10 }}>{t.doneTitle}</div>
+              <p style={{ color: "#D9B8D2", fontSize: 16, lineHeight: 1.9, maxWidth: 460, margin: "0 auto" }}>{t.doneBody}</p>
+              <button className="btn ghost" onClick={() => setDone(false)} style={{ marginTop: 24 }}>{t.sendAnother}</button>
             </div>
           ) : (
             <form onSubmit={onSubmit} noValidate>
               <div className="field">
-                <label>النوع</label>
+                <label>{t.typeLabel}</label>
                 <select value={form.type} onChange={onChange("type")} style={{ fontFamily: "inherit", fontSize: 16, color: "#fff", background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.28)", borderRadius: 14, padding: "14px 16px", width: "100%" }}>
-                  {(Object.keys(typeLabels) as Array<FormState["type"]>).map((k) => <option key={k} value={k}>{typeLabels[k]}</option>)}
+                  {(Object.keys(t.typeLabels) as Array<FormState["type"]>).map((k) => <option key={k} value={k}>{t.typeLabels[k]}</option>)}
                 </select>
               </div>
-              <div className="field"><label>الاسم</label><input type="text" value={form.name} onChange={onChange("name")} required /></div>
+              <div className="field"><label>{t.nameLabel}</label><input type="text" value={form.name} onChange={onChange("name")} required /></div>
               <div className="form-row">
-                <div className="field"><label>البريد الإلكتروني</label><input type="email" value={form.email} onChange={onChange("email")} required /></div>
-                <div className="field"><label>رقم الجوال <span className="hint">(اختياري)</span></label><input type="tel" value={form.phone} onChange={onChange("phone")} dir="ltr" /></div>
+                <div className="field"><label>{t.emailLabel}</label><input type="email" value={form.email} onChange={onChange("email")} required /></div>
+                <div className="field"><label>{t.phoneLabel} <span className="hint">{t.optional}</span></label><input type="tel" value={form.phone} onChange={onChange("phone")} dir="ltr" /></div>
               </div>
-              <div className="field"><label>رقم الطلب <span className="hint">(اختياري)</span></label><input type="text" value={form.orderRef} onChange={onChange("orderRef")} /></div>
-              <div className="field"><label>الرسالة</label><textarea value={form.message} onChange={onChange("message")} required style={{ minHeight: 120 }} /></div>
+              <div className="field"><label>{t.orderRefLabel} <span className="hint">{t.optional}</span></label><input type="text" value={form.orderRef} onChange={onChange("orderRef")} /></div>
+              <div className="field"><label>{t.messageLabel}</label><textarea value={form.message} onChange={onChange("message")} required style={{ minHeight: 120 }} /></div>
               <div className="field">
-                <label>مرفقات <span className="hint">(اختياري — صور، PDF)</span></label>
+                <label>{t.attachmentsLabel} <span className="hint">{t.attachmentsHint}</span></label>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-                  <label htmlFor="cmp-file" className="btn ghost" style={{ cursor: "pointer", padding: "10px 18px", fontSize: 13, background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.3)", color: "#FBF3F9" }}>📎 اختر ملفاً</label>
+                  <label htmlFor="cmp-file" className="btn ghost" style={{ cursor: "pointer", padding: "10px 18px", fontSize: 13, background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.3)", color: "#FBF3F9" }}>{t.chooseFile}</label>
                   <input ref={fileRef} id="cmp-file" type="file" accept="image/*,.pdf" onChange={onFileChange} style={{ display: "none" }} />
                   {file && <span className="file-chip">{file.name} <button type="button" onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = "" }} style={{ background: "none", border: "none", color: "#D9B8D2", cursor: "pointer", marginRight: 6 }}>✕</button></span>}
                 </div>
               </div>
               {error && <div className="form-error" role="alert">{error}</div>}
-              <button className="btn primary" type="submit" disabled={submitting} style={{ justifyContent: "center", width: "100%" }}>{submitting ? "جاري الإرسال…" : "أرسل"}</button>
+              <button className="btn primary" type="submit" disabled={submitting} style={{ justifyContent: "center", width: "100%" }}>{submitting ? t.sending : t.submit}</button>
             </form>
           )}
         </div>

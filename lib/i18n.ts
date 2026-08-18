@@ -1,0 +1,441 @@
+export type Locale = "ar" | "en"
+
+export const locales: Locale[] = ["ar", "en"]
+export const defaultLocale: Locale = "ar"
+
+export const direction = (locale: Locale): "rtl" | "ltr" =>
+  locale === "ar" ? "rtl" : "ltr"
+
+export const isLocale = (v: string): v is Locale =>
+  v === "ar" || v === "en"
+
+const ar = {
+  nav: {
+    links: [
+      { href: "#services", label: "تخصصاتنا" },
+      { href: "#musicians", label: "عازفينا" },
+      { href: "#steps", label: "خطوات العمل معنا" },
+    ],
+    cta: "احجز موعدك",
+    menu: "القائمة",
+    switchTo: "EN",
+  },
+  hero: {
+    eyebrow: "٠٠ — المدخل",
+    words: ["نحوّلُ", "مناسبتكَ", "إلى", "حكايةٍ", "تُروى"],
+    lead:
+      "من أول وردةٍ في الممرّ إلى آخر إضاءةٍ في القاعة: تنسيق ورد، كوش، أعراس، تخرّج، أعياد ميلاد وولائم — بتفاصيل فنية تليق بذوقك.",
+    cta: "ابدأ حكايتك",
+    stats: [
+      { label: "مناسبة منسّقة" },
+      { label: "تخصصات تنسيق" },
+      { label: "سنوات من الشغف" },
+    ],
+  },
+  marquee: [
+    "تنسيق ورد",
+    "حفل تخرج",
+    "خطوبة",
+    "عيد ميلاد",
+    "كوش أفراح",
+    "ولائم",
+    "تنسيق داخلي كامل",
+    "تنسيق خارجي كامل",
+  ],
+  about: {
+    eyebrow: "لماذا TOOLCAN ؟",
+    titleA: "نحن لا نزيّن المكان…",
+    titleB: "نحن نصنع لحظات تروى",
+    sub:
+      "فريقنا يرافقك من فكرة المناسبة حتى لحظة وداع آخر ضيف: تصميمٌ يخصّك وحدك، خاماتٌ فاخرة، وتنفيذٌ دقيق في الموعد.",
+    counters: [
+      { label: "حفل ناجح" },
+      { label: "كوشة مصمّمة" },
+      { label: "رضا العملاء" },
+    ],
+  },
+  services: {
+    eyebrow: "تخصصاتنا الثمانية",
+    title: "مرّر لتشاهد الفصول تتراكب",
+  },
+  steps: {
+    eyebrow: "خطوات العمل معنا",
+    title: "أربع خطوات… وتقام الحفلة",
+    items: [
+      {
+        n: "١",
+        title: "نسمع حكايتك",
+        text: "جلسة تعارف مجانية نفهم فيها ذوقك، عدد ضيوفك، وميزانيتك — بلا وعودٍ فضفاضة.",
+      },
+      {
+        n: "٢",
+        title: "نرسم المشهد",
+        text: "مخطط ألوان وخامات وإضاءة واضح، مع تصور مبدئي ترى به حفلتك قبل أن تُقام.",
+      },
+      {
+        n: "٣",
+        title: "نجهّز وننسّق",
+        text: "فريقنا يدخل القاعة قبلك بساعات: يُركّب، يرتّب، ويفحص كل تفصيلة على checklist.",
+      },
+      {
+        n: "٤",
+        title: "تستمتع أنت",
+        text: "تحضر كضيف شرفٍ في مناسبتك، ونحن نتولى الكواليس حتى آخر ضيف.",
+      },
+    ],
+  },
+  musicians: {
+    eyebrow: "موسيقى حية",
+    title: "عازفين على مهارة وفن",
+    items: [
+      {
+        img: "/violin.png",
+        name: "كمنجة",
+        desc: "نغمات الكمنجة تضيف لمسة راقية تكمل أجواء مناسبتك",
+      },
+      {
+        img: "/piano.png",
+        name: "بيانو",
+        desc: "ألحان البيانو تعطي لحظاتك طابعًا دافئ وأنيق",
+      },
+      {
+        img: "/oud.png",
+        name: "عود",
+        desc: "صوت العود ياخذك لأجواء عربية أصيلة تفرح القلب",
+      },
+    ],
+  },
+  book: {
+    overline: "خلّينا نبدأ الحكاية",
+    title: "تاريخك محجوز للفرح",
+    sub: "املأ بياناتك وراح يوصلنا مباشرة، ونتواصل معك بأسرع وقت",
+    namePh: "الاسم",
+    emailPh: "الإيميل",
+    phonePh: "رقم الجوال",
+    typePh: "نوع المناسبة",
+    musicianPh: "تحب عازف معين؟",
+    musiciansList: ["كمنجة", "بيانو", "عود", "ما يحتاجه الموقع"],
+    dateLabel: "تاريخ المناسبة",
+    budgetPh: "الميزانية التقريبية",
+    budgets: [
+      "أقل من 5,000 ريال",
+      "5,000 – 10,000 ريال",
+      "10,000 – 25,000 ريال",
+      "25,000 – 50,000 ريال",
+      "أكثر من 50,000 ريال",
+    ],
+    messagePh: "أي تفاصيل إضافية تبي نعرفها؟",
+    submit: "أرسل طلبك",
+    sending: "جارٍ الإرسال…",
+    error: "صار خطأ بالإرسال، جرب مرة ثانية",
+    toast: "وصلتنا طلبك — راح نتواصل معك قريب",
+    defaultMessage: "أرغب بحجز موعد",
+    expect: {
+      title: "ما الذي يمكن توقعه:",
+      items: [
+        "سيتم الرد شخصيا من قبل فريقنا في غضون 48 ساعة.",
+        "محادثة، وليست مكالمة مبيعات.",
+        "سرية تامة وتكتم كامل.",
+        "لا يوجد التزام بالمتابعة.",
+      ],
+    },
+  },
+  afterlight: {
+    eyebrow: "٠٩ — الضوء الأخير",
+    titleA: "كل مناسبةٍ تُروى",
+    titleB: "تبدأ من تفصيلةٍ واحدة",
+    kicker:
+      "من أول وردةٍ إلى آخر نجمةٍ معلّقة: نحن نهتمّ بالتفاصيل التي تُروى بعدها الحكايات.",
+  },
+  railLabel: "الفصول",
+  footer: {
+    brandDesc: "شركة متخصصة لتنسيق الحفلات والمناسبات — نحول التفاصيل إلى ذكريات.",
+    contactTitle: "تواصل",
+    address: "الرياض — المملكة العربية السعودية",
+    complaints: "الشكاوي والاقتراحات",
+    trustMain: "موثوق",
+    trustSub: "موثوق منصة الأعمال",
+    crLabel: "السجل التجاري:",
+    payLabel: "طرق الدفع",
+    payGeneric: { bank: "تحويل بنكي", cod: "الدفع عند الاستلام" },
+    copyright: "© 2026 TOOLCAN",
+  },
+  complaintsPage: {
+    overline: "صوتك مهم",
+    title: "الشكاوي والاقتراحات",
+    sub: "نحن نستمع — شاركنا ملاحظاتك أو شكواك أو اقتراحك وسنتعامل معها بجدية.",
+    typeLabel: "النوع",
+    typeLabels: {
+      complaint: "شكوى",
+      suggestion: "اقتراح",
+      remark: "ملاحظة",
+      inquiry: "استفسار",
+    },
+    nameLabel: "الاسم",
+    emailLabel: "البريد الإلكتروني",
+    phoneLabel: "رقم الجوال",
+    optional: "(اختياري)",
+    orderRefLabel: "رقم الطلب",
+    messageLabel: "الرسالة",
+    attachmentsLabel: "مرفقات",
+    attachmentsHint: "(اختياري — صور، PDF)",
+    chooseFile: "📎 اختر ملفاً",
+    errRequired: "الرجاء تعبئة الحقول المطلوبة",
+    errEmail: "بريد إلكتروني غير صالح",
+    errFile: "الملف كبير جداً — الحد الأقصى 10 ميجابايت",
+    submit: "أرسل",
+    sending: "جاري الإرسال…",
+    doneTitle: "تم الإرسال!",
+    doneBody: "شكراً لمشاركتك — نأخذ كل ملاحظة على محمل الجد.",
+    sendAnother: "إرسال رسالة أخرى",
+  },
+  contactPage: {
+    overline: "لنبدأ الحكاية",
+    title: "تواصل معنا",
+    sub: "أخبرنا عن مناسبتك — سنعود إليك بتصور فني يناسب ذوقك.",
+    nameLabel: "الاسم",
+    emailLabel: "البريد الإلكتروني",
+    phoneLabel: "رقم الجوال",
+    optional: "(اختياري)",
+    typeLabel: "نوع المناسبة",
+    typePh: "مثال: عرس، تخرج، عيد ميلاد",
+    sizeLabel: "مساحة القاعة",
+    sizePh: "مثال: 200 م²",
+    sizeUnit: "م²",
+    messageLabel: "الرسالة",
+    attachmentsLabel: "مرفقات",
+    attachmentsHint: "(اختياري — صور، PDF)",
+    chooseFile: "📎 اختر ملفاً",
+    errRequired: "الرجاء تعبئة الحقول المطلوبة",
+    errEmail: "بريد إلكتروني غير صالح",
+    errFile: "الملف كبير جداً — الحد الأقصى 10 ميجابايت",
+    submit: "أرسل الرسالة",
+    sending: "جاري الإرسال…",
+    doneTitle: "تم الإرسال!",
+    doneBody: "شكراً لتواصلك — سنرد عليك خلال 24 ساعة.",
+    sendAnother: "إرسال رسالة أخرى",
+  },
+  meta: {
+    title: "ToolCan | تنسيق الحفلات والمناسبات",
+    description: "شركة متخصصة لتنسيق الحفلات والمناسبات — نحول التفاصيل إلى ذكريات.",
+  },
+}
+
+const en: typeof ar = {
+  nav: {
+    links: [
+      { href: "#services", label: "Our Specialties" },
+      { href: "#musicians", label: "Our Musicians" },
+      { href: "#steps", label: "How We Work" },
+    ],
+    cta: "Book Your Date",
+    menu: "Menu",
+    switchTo: "عربي",
+  },
+  hero: {
+    eyebrow: "00 — The Entrance",
+    words: ["We turn", "your occasion", "into a", "story", "worth telling"],
+    lead:
+      "From the first rose in the aisle to the last light in the hall: flower styling, wedding stages, graduations, birthdays and banquets — artistic details worthy of your taste.",
+    cta: "Start Your Story",
+    stats: [
+      { label: "occasions styled" },
+      { label: "styling specialties" },
+      { label: "years of passion" },
+    ],
+  },
+  marquee: [
+    "Flower Styling",
+    "Graduation",
+    "Engagement",
+    "Birthday",
+    "Wedding Stages",
+    "Banquets",
+    "Full Interior Styling",
+    "Full Outdoor Styling",
+  ],
+  about: {
+    eyebrow: "Why TOOLCAN?",
+    titleA: "We don't decorate the place…",
+    titleB: "we craft moments worth retelling",
+    sub:
+      "Our team walks with you from the idea of your occasion to the last guest's farewell: a design made for you alone, premium materials, and precise on-time execution.",
+    counters: [
+      { label: "successful events" },
+      { label: "stages designed" },
+      { label: "client satisfaction" },
+    ],
+  },
+  services: {
+    eyebrow: "Our Eight Specialties",
+    title: "Scroll to watch the chapters stack",
+  },
+  steps: {
+    eyebrow: "How We Work With You",
+    title: "Four steps… and the party happens",
+    items: [
+      {
+        n: "1",
+        title: "We Hear Your Story",
+        text: "A free intro session to understand your taste, guest count, and budget — no empty promises.",
+      },
+      {
+        n: "2",
+        title: "We Sketch the Scene",
+        text: "A clear palette, materials, and lighting plan, with a draft vision of your event before it happens.",
+      },
+      {
+        n: "3",
+        title: "We Prepare & Style",
+        text: "Our team enters the hall hours before you: assembling, arranging, and checking every detail on a checklist.",
+      },
+      {
+        n: "4",
+        title: "You Enjoy",
+        text: "You attend as a guest of honor at your own event, while we run the backstage until the last guest.",
+      },
+    ],
+  },
+  musicians: {
+    eyebrow: "Live Music",
+    title: "Musicians of Skill and Artistry",
+    items: [
+      {
+        img: "/violin.png",
+        name: "Violin",
+        desc: "Violin melodies add an elegant touch that completes your occasion's atmosphere",
+      },
+      {
+        img: "/piano.png",
+        name: "Piano",
+        desc: "Piano tunes give your moments a warm, elegant character",
+      },
+      {
+        img: "/oud.png",
+        name: "Oud",
+        desc: "The sound of the oud takes you to authentic arabesque moods that warm the heart",
+      },
+    ],
+  },
+  book: {
+    overline: "Let's Begin the Story",
+    title: "Your Date Is Reserved for Joy",
+    sub: "Fill in your details and it reaches us directly — we'll get back to you as soon as possible.",
+    namePh: "Name",
+    emailPh: "Email",
+    phonePh: "Mobile number",
+    typePh: "Occasion type",
+    musicianPh: "Any musician in mind?",
+    musiciansList: ["Violin", "Piano", "Oud", "Whatever suits the venue"],
+    dateLabel: "Event date",
+    budgetPh: "Estimated budget",
+    budgets: [
+      "Under SAR 5,000",
+      "SAR 5,000 – 10,000",
+      "SAR 10,000 – 25,000",
+      "SAR 25,000 – 50,000",
+      "Over SAR 50,000",
+    ],
+    messagePh: "Any extra details you'd like us to know?",
+    submit: "Send Your Request",
+    sending: "Sending…",
+    error: "Something went wrong — please try again",
+    toast: "Request received — we'll contact you soon",
+    defaultMessage: "I'd like to book an appointment",
+    expect: {
+      title: "What you can expect:",
+      items: [
+        "You'll receive a personal reply from our team within 48 hours.",
+        "A conversation — not a sales call.",
+        "Full privacy and complete discretion.",
+        "No obligation to proceed.",
+      ],
+    },
+  },
+  afterlight: {
+    eyebrow: "09 — The Last Light",
+    titleA: "Every occasion worth retelling",
+    titleB: "starts from a single detail",
+    kicker:
+      "From the first flower to the last hanging star: we care for the details that stories are told about.",
+  },
+  railLabel: "Chapters",
+  footer: {
+    brandDesc: "A company specialized in event styling and coordination — turning details into memories.",
+    contactTitle: "Contact",
+    address: "Riyadh — Saudi Arabia",
+    complaints: "Complaints & Suggestions",
+    trustMain: "Verified",
+    trustSub: "Verified business platform",
+    crLabel: "Commercial Registration:",
+    payLabel: "Payment Methods",
+    payGeneric: { bank: "Bank Transfer", cod: "Cash on Delivery" },
+    copyright: "© 2026 TOOLCAN",
+  },
+  complaintsPage: {
+    overline: "Your Voice Matters",
+    title: "Complaints & Suggestions",
+    sub: "We're listening — share your remark, complaint or suggestion and we'll handle it seriously.",
+    typeLabel: "Type",
+    typeLabels: {
+      complaint: "Complaint",
+      suggestion: "Suggestion",
+      remark: "Remark",
+      inquiry: "Inquiry",
+    },
+    nameLabel: "Name",
+    emailLabel: "Email",
+    phoneLabel: "Mobile number",
+    optional: "(optional)",
+    orderRefLabel: "Order number",
+    messageLabel: "Message",
+    attachmentsLabel: "Attachments",
+    attachmentsHint: "(optional — images, PDF)",
+    chooseFile: "📎 Choose a file",
+    errRequired: "Please fill the required fields",
+    errEmail: "Invalid email address",
+    errFile: "File too large — 10 MB max",
+    submit: "Send",
+    sending: "Sending…",
+    doneTitle: "Sent!",
+    doneBody: "Thanks for sharing — we take every remark seriously.",
+    sendAnother: "Send another message",
+  },
+  contactPage: {
+    overline: "Let's Begin the Story",
+    title: "Contact Us",
+    sub: "Tell us about your occasion — we'll come back with a creative concept that fits your taste.",
+    nameLabel: "Name",
+    emailLabel: "Email",
+    phoneLabel: "Mobile number",
+    optional: "(optional)",
+    typeLabel: "Occasion type",
+    typePh: "e.g. wedding, graduation, birthday",
+    sizeLabel: "Hall size",
+    sizePh: "e.g. 200 m²",
+    sizeUnit: "m²",
+    messageLabel: "Message",
+    attachmentsLabel: "Attachments",
+    attachmentsHint: "(optional — images, PDF)",
+    chooseFile: "📎 Choose a file",
+    errRequired: "Please fill the required fields",
+    errEmail: "Invalid email address",
+    errFile: "File too large — 10 MB max",
+    submit: "Send the Message",
+    sending: "Sending…",
+    doneTitle: "Sent!",
+    doneBody: "Thanks for reaching out — we'll reply within 24 hours.",
+    sendAnother: "Send another message",
+  },
+  meta: {
+    title: "ToolCan | Event Styling & Coordination",
+    description: "A company specialized in event styling and coordination — turning details into memories.",
+  },
+}
+
+export type Dictionary = typeof ar
+
+export const dictionaries: Record<Locale, Dictionary> = { ar, en }
+
+export const getDictionary = (locale: Locale): Dictionary =>
+  dictionaries[locale] ?? dictionaries.ar

@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react"
 import { Logo } from "./Logo"
-import { NAV_LINKS } from "@/lib/data"
+import type { Dictionary } from "@/lib/i18n"
 
-export function Header() {
+interface HeaderProps {
+  dict: Dictionary["nav"]
+  lang: "ar" | "en"
+}
+
+export function Header({ dict, lang }: HeaderProps) {
   const [open, setOpen] = useState(false)
+  const otherLang = lang === "ar" ? "/en" : "/ar"
 
   useEffect(() => {
     const hdr = document.getElementById("hdr")
@@ -24,19 +30,22 @@ export function Header() {
           <Logo />
         </a>
         <nav className="desk">
-          {NAV_LINKS.map((l) => (
+          {dict.links.map((l) => (
             <a key={l.href} href={l.href}>
               {l.label}
             </a>
           ))}
         </nav>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+          <a className="lang-switch" href={otherLang}>
+            {dict.switchTo}
+          </a>
           <a className="cta-sm" href="#book">
-            احجز موعدك
+            {dict.cta}
           </a>
           <button
             id="menuBtn"
-            aria-label="القائمة"
+            aria-label={dict.menu}
             onClick={() => setOpen((o) => !o)}
           >
             ☰
@@ -44,14 +53,15 @@ export function Header() {
         </div>
       </header>
       <nav id="mobileNav" className={open ? "open" : ""}>
-        {NAV_LINKS.map((l) => (
+        {dict.links.map((l) => (
           <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
             {l.label}
           </a>
         ))}
         <a href="#book" onClick={() => setOpen(false)}>
-          احجز موعدك
+          {dict.cta}
         </a>
+        <a href={otherLang}>{dict.switchTo}</a>
       </nav>
     </>
   )

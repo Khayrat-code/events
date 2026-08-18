@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import { Header } from "@/components/Header"
 import { Hero } from "@/components/Hero"
 import { Marquee } from "@/components/Marquee"
@@ -15,8 +16,13 @@ import { Analytics } from "@/components/Analytics"
 import { Cinema } from "@/components/Cinema/Cinema"
 import { Cursor } from "@/components/Cursor"
 import { Rail } from "@/components/Rail"
+import { getDictionary, isLocale } from "@/lib/i18n"
 
-export default function Page() {
+export default function Page({ params }: { params: { lang: string } }) {
+  if (!isLocale(params.lang)) notFound()
+  const lang = params.lang
+  const t = getDictionary(lang)
+
   return (
     <>
       <Cinema />
@@ -25,19 +31,19 @@ export default function Page() {
       <Effects />
       <Analytics />
       <Cursor />
-      <Rail />
-      <Header />
+      <Rail label={t.railLabel} lang={lang} />
+      <Header dict={t.nav} lang={lang} />
       <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Services />
-        <Musicians />
-        <Steps />
-        <Book />
-        <Afterlight />
+        <Hero dict={t.hero} />
+        <Marquee items={t.marquee} />
+        <About dict={t.about} />
+        <Services dict={t.services} lang={lang} />
+        <Musicians dict={t.musicians} />
+        <Steps dict={t.steps} />
+        <Book dict={t.book} lang={lang} />
+        <Afterlight dict={t.afterlight} />
       </main>
-      <Footer />
+      <Footer dict={t.footer} lang={lang} />
     </>
   )
 }

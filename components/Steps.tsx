@@ -1,21 +1,16 @@
-const STEPS = [
-  { n: "١", title: "نسمع حكايتك", text: "جلسة تعارف مجانية نفهم فيها ذوقك، عدد ضيوفك، وميزانيتك — بلا وعودٍ فضفاضة." },
-  { n: "٢", title: "نرسم المشهد", text: "مخطط ألوان وخامات وإضاءة واضح، مع تصور مبدئي ترى به حفلتك قبل أن تُقام." },
-  { n: "٣", title: "نجهّز وننسّق", text: "فريقنا يدخل القاعة قبلك بساعات: يُركّب، يرتّب، ويفحص كل تفصيلة على checklist." },
-  { n: "٤", title: "تستمتع أنت", text: "تحضر كضيف شرفٍ في مناسبتك، ونحن نتولى الكواليس حتى آخر ضيف." },
-]
+import type { Dictionary } from "@/lib/i18n"
 
-export function Steps() {
+export function Steps({ dict }: { dict: Dictionary["steps"] }) {
   return (
     <section id="steps">
       <div className="wrap">
         <div className="cinema-head reveal">
-          <span className="ed-eyebrow">خطوات العمل معنا</span>
-          <h2 className="title">أربع خطوات… وتقام الحفلة</h2>
+          <span className="ed-eyebrow">{dict.eyebrow}</span>
+          <h2 className="title">{dict.title}</h2>
           <hr className="ed-rule" />
         </div>
         <div className="steps" id="stepsLine">
-          {STEPS.map((s, i) => (
+          {dict.items.map((s, i) => (
             <div
               key={s.n}
               className="step reveal"
