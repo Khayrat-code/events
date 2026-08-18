@@ -360,6 +360,13 @@ footer a:hover{opacity:1; color:var(--mid)}
 .f-trust-txt{display:flex; flex-direction:column; line-height:1.35}
 .f-trust-txt small{font-size:11px; color:rgba(255,255,255,.55)}
 .f-trust-txt b{font-size:13px; color:rgba(255,255,255,.92); font-weight:700}
+@media (max-width:760px){
+  .f-trust-strip{flex-wrap:nowrap; justify-content:space-between; gap:12px; padding:14px 6px}
+  .f-trust-item{gap:6px; min-width:0}
+  .f-trust-item img{width:28px; height:28px}
+  .f-trust-txt small{font-size:10px}
+  .f-trust-txt b{font-size:11px}
+}
 
 /* ---- Payments ---- */
 .f-pay{display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:20px 0; max-width:1150px; margin-inline:auto;
