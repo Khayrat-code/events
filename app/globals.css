@@ -361,11 +361,12 @@ footer a:hover{opacity:1; color:var(--mid)}
 .f-trust-txt small{font-size:11px; color:rgba(255,255,255,.55)}
 .f-trust-txt b{font-size:13px; color:rgba(255,255,255,.92); font-weight:700}
 @media (max-width:760px){
-  .f-trust-strip{flex-wrap:nowrap; justify-content:space-between; gap:12px; padding:14px 6px}
-  .f-trust-item{gap:6px; min-width:0}
-  .f-trust-item img{width:28px; height:28px}
-  .f-trust-txt small{font-size:10px}
-  .f-trust-txt b{font-size:11px}
+  .f-trust-strip{flex-wrap:nowrap; justify-content:space-between; gap:10px; padding:16px 8px}
+  .f-trust-item{flex:1; flex-direction:column; align-items:center; gap:6px; min-width:0; text-align:center}
+  .f-trust-item img{width:30px; height:30px}
+  .f-trust-txt{align-items:center; gap:1px}
+  .f-trust-txt small{font-size:10px; white-space:normal}
+  .f-trust-txt b{font-size:10.5px; letter-spacing:0}
 }
 
 /* ---- Payments ---- */
