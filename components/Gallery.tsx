@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
@@ -84,7 +84,7 @@ export function Gallery() {
             <div>
               <span className="ed-eyebrow">مسرح الذكريات</span>
               <h2 className="title" style={{ color: "var(--c-bone)" }}>
-                صورٌ نثرناها… فجمعتها الأضواء
+                صور نثرناها… فجمعتها الأضواء
               </h2>
               <hr className="ed-rule" style={{ marginInline: "0" }} />
             </div>

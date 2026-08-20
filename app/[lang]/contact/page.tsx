@@ -96,8 +96,8 @@ export default function ContactPage({ params }: { params: { lang: string } }) {
                 <div className="field"><label>{t.phoneLabel} <span className="hint">{t.optional}</span></label><input type="tel" value={form.phone} onChange={onChange("phone")} dir="ltr" /></div>
               </div>
               <div className="form-row">
-                <div className="field"><label>{t.typeLabel}</label><input type="text" value={form.projectType} onChange={onChange("projectType")} placeholder={t.typePh} /></div>
-                <div className="field"><label>{t.sizeLabel}</label><input type="text" value={form.spaceSize} onChange={onChange("spaceSize")} placeholder={t.sizePh} inputMode="numeric" /></div>
+                <div className="field"><label>{t.typeLabel} <span className="hint">{t.optional}</span></label><input type="text" value={form.projectType} onChange={onChange("projectType")} placeholder={t.typePh} /></div>
+                <div className="field"><label>{t.sizeLabel} <span className="hint">{t.optional}</span></label><input type="text" value={form.spaceSize} onChange={onChange("spaceSize")} placeholder={t.sizePh} inputMode="numeric" /></div>
               </div>
               <div className="field"><label>{t.messageLabel}</label><textarea value={form.message} onChange={onChange("message")} required style={{ minHeight: 120 }} /></div>
               <div className="field">

@@ -87,6 +87,7 @@ export function Book({ dict, lang }: BookProps) {
                 {services.map((s) => (
                   <option key={s.num} value={s.title}>{lang === "en" ? s.titleEn : s.title}</option>
                 ))}
+                <option value="ولائم - شركات">{lang === "en" ? "Banquets - Corporate" : "ولائم - شركات"}</option>
               </select>
               <select name="musician" defaultValue="">
                 <option value="" disabled>{dict.musicianPh}</option>

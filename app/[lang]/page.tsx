@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation"
 import { Header } from "@/components/Header"
 import { Hero } from "@/components/Hero"
-import { Marquee } from "@/components/Marquee"
 import { About } from "@/components/About"
 import { Services } from "@/components/Services"
 import { Steps } from "@/components/Steps"
@@ -33,7 +32,6 @@ export default function Page({ params }: { params: { lang: string } }) {
       <Header dict={t.nav} lang={lang} />
       <main>
         <Hero dict={t.hero} />
-        <Marquee items={t.marquee} />
         <About dict={t.about} />
         <Services dict={t.services} lang={lang} />
         <Musicians dict={t.musicians} />

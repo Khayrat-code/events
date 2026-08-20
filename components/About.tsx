@@ -7,8 +7,6 @@ export function About({ dict }: { dict: Dictionary["about"] }) {
         <div className="reveal cinema-head about-head">
           <span className="ed-eyebrow">{dict.eyebrow}</span>
           <h2 className="title">
-            {dict.titleA}
-            <br />
             {dict.titleB}
           </h2>
           <hr className="ed-rule" style={{ marginInline: "0" }} />

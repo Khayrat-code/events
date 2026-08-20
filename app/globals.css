@@ -1,4 +1,4 @@
-/* ============ الأساس ونظام الألوان المريح ============ */
+﻿/* ============ الأساس ونظام الألوان المريح ============ */
 :root{
   --mist:#FAF6F9; --lav:#F1E3EE; --lav2:#E7CBE2;
   --brand:#8E3A62; --brand-d:#7A2F52;
@@ -153,7 +153,7 @@ h2.title{font-size:clamp(1.6rem,5vw,2.6rem); font-weight:800; color:var(--deep)}
 .reveal{opacity:0; transform:translateY(34px); transition:opacity .8s var(--d,0s), transform .8s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
 .reveal.in{opacity:1; transform:none}
 
-/* ============ عدّادات ============ */
+/* ============ عدادات ============ */
 .about-grid{display:grid; gap:30px; align-items:center}
 @media(min-width:900px){ .about-grid{grid-template-columns:1fr 1fr} }
 .counters{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
@@ -909,6 +909,24 @@ body.cinema-mode .mq-track,
 body.cinema-mode .marquee{color:#fff!important}
 body.cinema-mode #rail a{color:rgba(255,255,255,.55)!important}
 body.cinema-mode #rail a.on{color:var(--c-amber)!important}
+
+body.cinema-mode .contact-card{background:rgba(10,12,16,.5); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(243,236,224,.12); color:#fff}
+body.cinema-mode .contact-card label{color:rgba(255,255,255,.85)}
+body.cinema-mode .contact-card input,
+body.cinema-mode .contact-card textarea,
+body.cinema-mode .contact-card select{background:rgba(243,236,224,.06); border-color:rgba(243,236,224,.2); color:#fff}
+body.cinema-mode .contact-card input::placeholder,
+body.cinema-mode .contact-card textarea::placeholder{color:var(--c-mist)}
+body.cinema-mode .contact-card select option{color:var(--c-ink)}
+body.cinema-mode .contact-card input:focus,
+body.cinema-mode .contact-card textarea:focus,
+body.cinema-mode .contact-card select:focus{border-color:var(--c-amber); background:rgba(243,236,224,.1)}
+body.cinema-mode .contact-card .btn.primary{background:var(--c-amber); color:#0a0c10}
+body.cinema-mode .contact-card .btn.ghost{border-color:rgba(243,236,224,.3); color:#fff; background:rgba(10,12,16,.4)}
+body.cinema-mode .contact-card .btn.ghost:hover{border-color:var(--c-amber)}
+body.cinema-mode .contact-card .hint{color:var(--c-mist)}
+body.cinema-mode .contact-card .file-chip{color:var(--c-mist); background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2)}
+body.cinema-mode .contact-card .form-error{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2); border-inline-start-color:#D97474; color:rgba(255,255,255,.85)}
 
 /* ---- About head (right-aligned in RTL, left in LTR) ---- */
 .about-head{align-items:flex-start; text-align:right}

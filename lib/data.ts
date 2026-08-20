@@ -1,4 +1,4 @@
-export interface Service {
+﻿export interface Service {
   num: string
   title: string
   titleEn: string
@@ -35,7 +35,7 @@ const S = (folder: string, file: string) => `${STORAGE}/${folder}/${file}`
 export const services: Service[] = [
   {
     num: "01", title: "تنسيق ورد", titleEn: "Flower Styling",
-    description: "وردٌ يحكي مزاج المناسبة: ممرّات، جداريات، وبوكيهات تُقطَف ذوقًا قبل أن تُقطَف لونًا.",
+    description: "ورد يحكي مزاج المناسبة: ممرات، جداريات، وبوكيهات تقطف ذوقا قبل أن تقطف لونا.",
     descriptionEn: "Flowers that speak the mood of your occasion: aisles, floral walls, and bouquets picked for taste before color.",
     tags: ["ممرات وردية", "جداريات زهور", "بوكيهات"],
     tagsEn: ["Aisles", "Floral Walls", "Bouquets"],
@@ -44,7 +44,7 @@ export const services: Service[] = [
   },
   {
     num: "02", title: "حفل تخرج", titleEn: "Graduation",
-    description: "فرحة النجاح تستحق إطارًا يليق بها: ركن تصوير، لوحات تهنئة، وإضاءة تحتفي بالمجتهد.",
+    description: "فرحة النجاح تستحق إطارا يليق بها: ركن تصوير، لوحات تهنئة، وإضاءة تحتفي بالمجتهد.",
     descriptionEn: "Success deserves a frame worthy of it: photo corner, congratulation boards, and lighting that celebrates the achiever.",
     tags: ["ركن تصوير", "لوحات تهنئة", "إضاءة احتفالية"],
     tagsEn: ["Photo Corner", "Boards", "Festive Lighting"],
@@ -53,7 +53,7 @@ export const services: Service[] = [
   },
   {
     num: "03", title: "خطوبة", titleEn: "Engagement",
-    description: "بداية الحكاية أجملُ حين تُروى بمشهدٍ دافئ: كوشة خطوبة وضيافةٌ تُذكَر.",
+    description: "بداية الحكاية أجمل حين تروى بمشهد دافئ: كوشة خطوبة وضيافة تذكر.",
     descriptionEn: "The story's beginning is lovelier in a warm scene: engagement stage and hospitality to remember.",
     tags: ["كوشة خطوبة", "طاولات ضيافة", "إنارة دافئة"],
     tagsEn: ["Engagement Stage", "Hospitality", "Warm Lighting"],
@@ -62,7 +62,7 @@ export const services: Service[] = [
   },
   {
     num: "04", title: "عيد ميلاد", titleEn: "Birthday",
-    description: "عمرٌ جديد يُحتفَل على طريقتك: ثيم حسب الطلب، ركن حلويات، وأقواس بالونات.",
+    description: "عمر جديد يحتفل على طريقتك: ثيم حسب الطلب، ركن حلويات، وأقواس بالونات.",
     descriptionEn: "A new year celebrated your way: custom theme, dessert corner, and balloon arches.",
     tags: ["ثيم مخصص", "ركن حلويات", "بالونات وأقواس"],
     tagsEn: ["Custom Theme", "Dessert Corner", "Balloon Arches"],
@@ -71,7 +71,7 @@ export const services: Service[] = [
   },
   {
     num: "05", title: "كوش أفراح", titleEn: "Wedding Stages",
-    description: "عرشُ الليلة كلّها: تصميمٌ حصري بخامات فاخرة يتناغم مع هندسة القاعة.",
+    description: "عرش الليلة كلها: تصميم حصري بخامات فاخرة يتناغم مع هندسة القاعة.",
     descriptionEn: "The throne of the whole evening: exclusive design in premium materials in harmony with the hall.",
     tags: ["تصميم حصري", "خامات فاخرة", "تناغم مع القاعة"],
     tagsEn: ["Exclusive Design", "Premium Materials", "Hall Harmony"],
@@ -80,7 +80,7 @@ export const services: Service[] = [
   },
   {
     num: "06", title: "ولائم", titleEn: "Banquets",
-    description: "ضيافةٌ تُذكر: طاولات منسّقة، بوفيهات أنيقة، وأدوات تُشرّف أصحاب الدعوة.",
+    description: "ضيافة تذكر: طاولات منسقة، بوفيهات أنيقة، وأدوات تشرف أصحاب الدعوة.",
     descriptionEn: "Hospitality to remember: styled tables, elegant buffets, and serviceware that honors the hosts.",
     tags: ["تنسيق طاولات", "بوفيهات أنيقة", "أدوات فاخرة"],
     tagsEn: ["Table Styling", "Elegant Buffets", "Serviceware"],
@@ -89,7 +89,7 @@ export const services: Service[] = [
   },
   {
     num: "07", title: "تنسيق داخلي كامل", titleEn: "Full Interior",
-    description: "القاعة تتحوّل كليًا: إضاءة معمارية، أسقف وستائر، ومسرحٌ وممرّات تستقبل الضيوف.",
+    description: "القاعة تتحول كليا: إضاءة معمارية، أسقف وستائر، ومسرح وممرات تستقبل الضيوف.",
     descriptionEn: "The hall transforms completely: architectural lighting, ceilings and drapes, plus a stage and aisles.",
     tags: ["إضاءة معمارية", "أسقف وستائر", "مسرح وممرات"],
     tagsEn: ["Architectural Light", "Ceilings & Drapes", "Stage & Aisles"],
@@ -98,7 +98,7 @@ export const services: Service[] = [
   },
   {
     num: "08", title: "تنسيق خارجي كامل", titleEn: "Full Outdoor",
-    description: "تحت السماء نرتّب الفرح: خيام ملكية، جلسات خارجية، وإنارةٌ معلّقة كالنجوم.",
+    description: "تحت السماء نرتب الفرح: خيام ملكية، جلسات خارجية، وإنارة معلقة كالنجوم.",
     descriptionEn: "Under the open sky we arrange joy: royal tents, outdoor lounges, and lighting hung like stars.",
     tags: ["خيام ملكية", "جلسات خارجية", "إنارة معلقة"],
     tagsEn: ["Royal Tents", "Outdoor Lounges", "Hanging Lights"],
@@ -111,15 +111,15 @@ export const services: Service[] = [
 
 export const gallery: GalleryGroup[] = [
   {
-    cat: "ورد", title: "جدار وردٍ متدرّج", emoji: "🌸",
+    cat: "ورد", title: "جدار ورد متدرج", emoji: "🌸",
     g1: "#E7CBE2", g2: "#C489B1",
-    caption: "جدار وردٍ متدرّج", category: "تنسيق ورد",
+    caption: "جدار ورد متدرج", category: "تنسيق ورد",
     images: ["entr.webp", "girly.jpg", "um.jpg", "welcome.webp"].map(f => S("wrd", f)),
   },
   {
-    cat: "كوش", title: "كوشة عرسٍ بلون التوت", emoji: "👑",
+    cat: "كوش", title: "كوشة عرس بلون التوت", emoji: "👑",
     g1: "#8E3A62", g2: "#5C315C",
-    caption: "كوشة عرسٍ بلون التوت", category: "كوش",
+    caption: "كوشة عرس بلون التوت", category: "كوش",
     images: ["1.jpg","2.jpg","3.webp","4.jpg","5.jpg","6.webp","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.webp","15.jpg","16.png"].map(f => S("kosha", f)),
   },
   {
@@ -129,33 +129,33 @@ export const gallery: GalleryGroup[] = [
     images: ["1.jpg", "2.webp", "3.jpg", "4.jpg"].map(f => S("graduation", f)),
   },
   {
-    cat: "ميلاد", title: "ثيم ميلادٍ وردي", emoji: "🎂",
+    cat: "ميلاد", title: "ثيم ميلاد وردي", emoji: "🎂",
     g1: "#F1E3EE", g2: "#C489B1",
-    caption: "ثيم ميلادٍ وردي", category: "ميلاد",
+    caption: "ثيم ميلاد وردي", category: "ميلاد",
     images: ["1.jpg", "2.jpg", "3.webp", "4.jpg"].map(f => S("birth_day", f)),
   },
   {
-    cat: "خطوبة", title: "طاولة خطوبةٍ دافئة", emoji: "💍",
+    cat: "خطوبة", title: "طاولة خطوبة دافئة", emoji: "💍",
     g1: "#A96795", g2: "#5C315C",
-    caption: "طاولة خطوبةٍ دافئة", category: "خطوبة",
+    caption: "طاولة خطوبة دافئة", category: "خطوبة",
     images: ["1.webp"].map(f => S("khotoba", f)),
   },
   {
-    cat: "ولائم", title: "طاولات وليمةٍ ملكية", emoji: "🍽️",
+    cat: "ولائم", title: "طاولات وليمة ملكية", emoji: "🍽️",
     g1: "#7A2F52", g2: "#421D36",
-    caption: "طاولات وليمةٍ ملكية", category: "ولائم",
+    caption: "طاولات وليمة ملكية", category: "ولائم",
     images: ["1.jpg", "2.jpg", "3.jpg", "4.webp", "5.webp", "6.jpg"].map(f => S("wlaim", f)),
   },
   {
-    cat: "داخلي", title: "قاعةٌ مضاءة بالثريات", emoji: "🕯️",
+    cat: "داخلي", title: "قاعة مضاءة بالثريات", emoji: "🕯️",
     g1: "#5C315C", g2: "#C489B1",
-    caption: "قاعةٌ مضاءة بالثريات", category: "داخلي كامل",
+    caption: "قاعة مضاءة بالثريات", category: "داخلي كامل",
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"].map(f => S("inner_space", f)),
   },
   {
-    cat: "خارجي", title: "جلسةٌ تحت الإنارة", emoji: "⛺",
+    cat: "خارجي", title: "جلسة تحت الإنارة", emoji: "⛺",
     g1: "#421D36", g2: "#A96795",
-    caption: "جلسةٌ تحت الإنارة", category: "خارجي كامل",
+    caption: "جلسة تحت الإنارة", category: "خارجي كامل",
     images: ["1.jpg", "2.jpg", "3.jpg", "4.webp"].map(f => S("outer_space", f)),
   },
 ]
@@ -163,8 +163,8 @@ export const gallery: GalleryGroup[] = [
 /* ---------- voices (testimonials data) ---------- */
 
 export const VOICES = [
-  { text: "«دخلت القاعة قبل العرس بساعة ولم أصدّق أنها نفس القاعة! الكوشة والممرّ فاقا التصور.»", author: "أم فيصل — عرس" },
-  { text: "«ركن التخرج لابنتي كان لوحة؛ كل ضيف صوّر عنده. تنظيمٌ والتزامٌ بالموعد حرفيًا.»", author: "أبو سارة — حفل تخرج" },
-  { text: "«ثيم عيد الميلاد طابق شخصية ابني تمامًا، والحلويات مرتّبة كأنها معرض. شكرًا تولكان!»", author: "نورة العتيبي — عيد ميلاد" },
-  { text: "«وليمة الخطوبة كانت فخمة وذوقًا عاليًا؛ الطاولات والورد والإضاءة تناغمٌ غريب.»", author: "عائلة الحربي — خطوبة" },
+  { text: "«دخلت القاعة قبل العرس بساعة ولم أصدق أنها نفس القاعة! الكوشة والممر فاقا التصور.»", author: "أم فيصل — عرس" },
+  { text: "«ركن التخرج لابنتي كان لوحة؛ كل ضيف صور عنده. تنظيم والتزام بالموعد حرفيا.»", author: "أبو سارة — حفل تخرج" },
+  { text: "«ثيم عيد الميلاد طابق شخصية ابني تماما، والحلويات مرتبة كأنها معرض. شكرا تولكان!»", author: "نورة العتيبي — عيد ميلاد" },
+  { text: "«وليمة الخطوبة كانت فخمة وذوقا عاليا؛ الطاولات والورد والإضاءة تناغم غريب.»", author: "عائلة الحربي — خطوبة" },
 ]
