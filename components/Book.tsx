@@ -84,10 +84,13 @@ export function Book({ dict, lang }: BookProps) {
               <input type="tel" name="phone" placeholder={dict.phonePh} required />
               <select name="service" required defaultValue="">
                 <option value="" disabled>{dict.typePh}</option>
-                {services.map((s) => (
-                  <option key={s.num} value={s.title}>{lang === "en" ? s.titleEn : s.title}</option>
-                ))}
-                <option value="ولائم - شركات">{lang === "en" ? "Banquets - Corporate" : "ولائم - شركات"}</option>
+                {services.flatMap((s) => {
+                  const el = <option key={s.num} value={s.title}>{lang === "en" ? s.titleEn : s.title}</option>;
+                  if (s.num === "06") {
+                    return [el, <option key="06-corp" value="ولائم - شركات">{lang === "en" ? "Banquets - Corporate" : "ولائم - شركات"}</option>];
+                  }
+                  return [el];
+                })}
               </select>
               <select name="musician" defaultValue="">
                 <option value="" disabled>{dict.musicianPh}</option>
