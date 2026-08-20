@@ -392,21 +392,24 @@ footer a:hover{opacity:1; color:var(--mid)}
 }
 
 /* ============ Contact / Complaints shared ============ */
-.contact-card{background:linear-gradient(150deg,var(--card-d),var(--deep)); border-radius:30px; color:var(--txt-on-d);
-  padding:clamp(28px,6vw,60px); box-shadow:0 40px 80px -30px rgba(66,29,54,.5)}
+.contact-card{background:rgba(10,12,16,.5); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(243,236,224,.12); border-radius:30px; color:#fff;
+  padding:clamp(28px,6vw,60px); box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
 .contact-card .field{margin-bottom:16px}
 .contact-card label{display:block; font-size:.85rem; font-weight:700; margin-bottom:6px; color:rgba(255,255,255,.85)}
-.contact-card input,.contact-card textarea,.contact-card select{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28); border-radius:14px;
+.contact-card input,.contact-card textarea,.contact-card select{background:rgba(243,236,224,.06); border:1px solid rgba(243,236,224,.2); border-radius:14px;
   padding:14px 16px; color:#fff; font-family:inherit; font-size:.92rem; outline:none; transition:.3s; width:100%}
-.contact-card input::placeholder,.contact-card textarea::placeholder{color:#D9B8D2}
-.contact-card input:focus,.contact-card textarea:focus,.contact-card select:focus{border-color:var(--mid); background:rgba(255,255,255,.16)}
+.contact-card input::placeholder,.contact-card textarea::placeholder{color:var(--c-mist)}
+.contact-card select option{color:var(--c-ink)}
+.contact-card input:focus,.contact-card textarea:focus,.contact-card select:focus{border-color:var(--c-amber); background:rgba(243,236,224,.1)}
 .contact-card textarea{resize:vertical}
-.contact-card .hint{font-weight:400; opacity:.55; font-size:.72rem}
+.contact-card .hint{font-weight:400; opacity:.55; font-size:.72rem; color:var(--c-mist)}
 .contact-card .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
 .contact-card .form-error{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-inline-start:3px solid #D97474;
   color:rgba(255,255,255,.85); padding:12px 14px; border-radius:10px; font-size:14px; margin-bottom:16px}
-.contact-card .btn.primary{margin-top:8px}
-.file-chip{display:inline-flex; align-items:center; gap:8px; font-size:13px; color:#D9B8D2; background:rgba(255,255,255,.08);
+.contact-card .btn.primary{margin-top:8px; background:var(--c-amber); color:#0a0c10}
+.contact-card .btn.ghost{border-color:rgba(243,236,224,.3); color:#fff; background:rgba(10,12,16,.4)}
+.contact-card .btn.ghost:hover{border-color:var(--c-amber)}
+.contact-card .file-chip{display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--c-mist); background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:6px 12px}
 @media (max-width:560px) { .contact-card .form-row{grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){
@@ -909,24 +912,6 @@ body.cinema-mode .mq-track,
 body.cinema-mode .marquee{color:#fff!important}
 body.cinema-mode #rail a{color:rgba(255,255,255,.55)!important}
 body.cinema-mode #rail a.on{color:var(--c-amber)!important}
-
-body.cinema-mode .contact-card{background:rgba(10,12,16,.5); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(243,236,224,.12); color:#fff}
-body.cinema-mode .contact-card label{color:rgba(255,255,255,.85)}
-body.cinema-mode .contact-card input,
-body.cinema-mode .contact-card textarea,
-body.cinema-mode .contact-card select{background:rgba(243,236,224,.06); border-color:rgba(243,236,224,.2); color:#fff}
-body.cinema-mode .contact-card input::placeholder,
-body.cinema-mode .contact-card textarea::placeholder{color:var(--c-mist)}
-body.cinema-mode .contact-card select option{color:var(--c-ink)}
-body.cinema-mode .contact-card input:focus,
-body.cinema-mode .contact-card textarea:focus,
-body.cinema-mode .contact-card select:focus{border-color:var(--c-amber); background:rgba(243,236,224,.1)}
-body.cinema-mode .contact-card .btn.primary{background:var(--c-amber); color:#0a0c10}
-body.cinema-mode .contact-card .btn.ghost{border-color:rgba(243,236,224,.3); color:#fff; background:rgba(10,12,16,.4)}
-body.cinema-mode .contact-card .btn.ghost:hover{border-color:var(--c-amber)}
-body.cinema-mode .contact-card .hint{color:var(--c-mist)}
-body.cinema-mode .contact-card .file-chip{color:var(--c-mist); background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2)}
-body.cinema-mode .contact-card .form-error{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2); border-inline-start-color:#D97474; color:rgba(255,255,255,.85)}
 
 /* ---- About head (right-aligned in RTL, left in LTR) ---- */
 .about-head{align-items:flex-start; text-align:right}

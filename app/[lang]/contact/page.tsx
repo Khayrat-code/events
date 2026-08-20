@@ -84,8 +84,8 @@ export default function ContactPage({ params }: { params: { lang: string } }) {
         <div className="contact-card" style={{ maxWidth: 800, margin: "0 auto" }}>
           {done ? (
             <div style={{ textAlign: "center", padding: "40px 12px" }}>
-              <div style={{ fontSize: 26, fontWeight: 800, color: "#FBF3F9", marginBottom: 10 }}>{t.doneTitle}</div>
-              <p style={{ color: "#D9B8D2", fontSize: 16, lineHeight: 1.9 }}>{t.doneBody}</p>
+              <div style={{ fontSize: 26, fontWeight: 800, marginBottom: 10 }}>{t.doneTitle}</div>
+              <p style={{ fontSize: 16, lineHeight: 1.9 }}>{t.doneBody}</p>
               <button className="btn ghost" onClick={() => setDone(false)} style={{ marginTop: 24 }}>{t.sendAnother}</button>
             </div>
           ) : (
@@ -103,7 +103,7 @@ export default function ContactPage({ params }: { params: { lang: string } }) {
               <div className="field">
                 <label>{t.attachmentsLabel} <span className="hint">{t.attachmentsHint}</span></label>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-                  <label htmlFor="c-file" className="btn ghost" style={{ cursor: "pointer", padding: "10px 18px", fontSize: 13, background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.3)", color: "#FBF3F9" }}>{t.chooseFile}</label>
+                  <label htmlFor="c-file" className="btn ghost" style={{ cursor: "pointer" }}>{t.chooseFile}</label>
                   <input ref={fileRef} id="c-file" type="file" accept="image/*,.pdf" onChange={onFileChange} style={{ display: "none" }} />
                   {file && <span className="file-chip">{file.name} <button type="button" onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = "" }} style={{ background: "none", border: "none", color: "#D9B8D2", cursor: "pointer", marginRight: 6 }}>✕</button></span>}
                 </div>
