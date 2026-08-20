@@ -459,7 +459,7 @@ body.cinema-mode #mobileNav a{color:#fff}
 body.cinema-mode #mobileNav a:active{background:rgba(216,154,74,.15)}
 
 /* ============ Editorial cinematic system (additive, inert until .cinema-mode) ============ */
-body.cinema-mode{background:transparent; color:#fff}
+body.cinema-mode{background:#0a0c10; color:#fff}
 body.cinema-mode .hero,
 body.cinema-mode #gallery,
 body.cinema-mode #voices{background:transparent}
