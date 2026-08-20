@@ -39,8 +39,8 @@ export default function ComplaintsPage({ params }: { params: { lang: string } })
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError(null)
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) { setError(t.errRequired); return }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) { setError(t.errEmail); return }
+    if (!form.name.trim() || !form.message.trim()) { setError(t.errRequired); return }
+    if (form.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) { setError(t.errEmail); return }
     setSubmitting(true)
 
     let attachmentUrl: string | null = null
@@ -97,8 +97,8 @@ export default function ComplaintsPage({ params }: { params: { lang: string } })
               </div>
               <div className="field"><label>{t.nameLabel}</label><input type="text" value={form.name} onChange={onChange("name")} required /></div>
               <div className="form-row">
-                <div className="field"><label>{t.emailLabel}</label><input type="email" value={form.email} onChange={onChange("email")} required /></div>
-                <div className="field"><label>{t.phoneLabel} <span className="hint">{t.optional}</span></label><input type="tel" value={form.phone} onChange={onChange("phone")} dir="ltr" /></div>
+                <div className="field"><label>{t.emailLabel} <span className="hint">{t.optional}</span></label><input type="email" value={form.email} onChange={onChange("email")} /></div>
+                <div className="field"><label>{t.phoneLabel}</label><input type="tel" value={form.phone} onChange={onChange("phone")} dir="ltr" /></div>
               </div>
               <div className="field"><label>{t.orderRefLabel} <span className="hint">{t.optional}</span></label><input type="text" value={form.orderRef} onChange={onChange("orderRef")} /></div>
               <div className="field"><label>{t.messageLabel}</label><textarea value={form.message} onChange={onChange("message")} required style={{ minHeight: 120 }} /></div>
